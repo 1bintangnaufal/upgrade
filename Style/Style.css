@@ -1,0 +1,26 @@
+button {
+    background-color: #181823; 
+    color: white; 
+    border-radius: 30px; 
+    border: none; 
+    padding: 10px 24px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #537FE7;
+    cursor: pointer;
+    transition: ease-in-out 0.314s;
+    transition-delay: 0.0314s;
+}
+
+i {
+    color: #181823;
+}
+
+i:hover {
+    color: #537FE7;
+    cursor: pointer;
+    transition: ease-in-out 0.314s;
+    transition-delay: 0.0314s;
+}
