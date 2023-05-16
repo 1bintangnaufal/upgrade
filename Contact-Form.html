@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="Style/Style.css">
+    <script src="https://kit.fontawesome.com/81634d0f93.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    
+    <nav>
+        <div id="left-nav">
+            <ul>
+                <li>
+                    <a class="nav-option" href="https://dumbways.id/" target="_blank">
+                    <img src="Images/dumbways-logo.png" alt="DumbWays ID logo">
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-option" href="Index.html" style="font-weight: normal;">HOME</a>
+                </li>
+
+                <li>
+                    <a class="nav-option" href="My-Project.html" style="font-weight: normal;">MY PROJECT</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="right-nav">
+            <a href="#">
+                <button type="button">
+                    Contact
+                </button>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ------------------------------------------------------------------------------------------------- -->
+
+    <h2 class="page-title">HIT ME UP</h2>
+
+    <form>
+        <div>
+            <label class="mandatory-field" for="name-input">Name</label>
+            <input type="text" placeholder="Bintang Naufal" id="name-input" autocomplete="off" required />
+        </div>
+
+        <div>
+            <label class="mandatory-field" for="email-input">Email</label>
+            <input type="email" placeholder="1bintangnaufal@gmail.com" id="email-input" autocomplete="off" required />
+        </div>
+
+        <div>
+            <label class="mandatory-field" for="phone-input">Phone</label>
+            <input type="number" placeholder="+628xxxxxxxxxx" id="phone-input" autocomplete="off" required />
+        </div>
+
+        <div>
+            <label class="mandatory-field" for="subject-input">Subject</label>
+            <select id="subject-input" required>
+                <option value="" hidden>Select Subject</option>
+                <option value="Suggestion">Suggestion</option>
+                <option value="Collaboration request">Collaboration request</option>
+                <option value="Meeting request">Meeting request</option>
+                <option value="Something else">Something else</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="message-input">Message</label>
+            <textarea placeholder="Say something..." id="message-input" autocomplete="off"></textarea>
+        </div>
+
+        <button class="submit-button" type="submit">Send</button>
+    </form>
+
+</body>
+</html>
