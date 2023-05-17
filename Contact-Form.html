@@ -46,7 +46,7 @@
     <form>
         <div>
             <label class="mandatory-field" for="name-input">Name</label>
-            <input type="text" placeholder="Bintang Naufal" id="name-input" autocomplete="off" required />
+            <input type="text" placeholder="Bintang Naufal" id="name-input" autocomplete="off" autocapitalize="words" required />
         </div>
 
         <div>
@@ -72,11 +72,12 @@
 
         <div>
             <label for="message-input">Message</label>
-            <textarea placeholder="Say something..." id="message-input" autocomplete="off"></textarea>
+            <textarea placeholder="Say something..." id="message-input" autocomplete="off" autocapitalize="sentences"></textarea>
         </div>
 
-        <button class="submit-button" type="submit">Send</button>
+        <button class="submit-button" type="submit" onclick="sendMessage()">Send</button>
     </form>
 
+    <script src="JS/Contact-Form.js"></script>
 </body>
 </html>

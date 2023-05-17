@@ -8,6 +8,7 @@
 body {
     margin: 0;
     background-color: #F1F6F9;
+    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='20' patternTransform='scale(2) rotate(65)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(202, 40%, 96%, 1)'/><path d='M40 0L20-10V0l20 10zm0 10L20 0v10l20 10zm0 10L20 10v10l20 10zM0 20l20-10v10L0 30zm0-10L20 0v10L0 20zM0 0l20-10V0L0 10z'  stroke-width='0.5' stroke='hsla(259, 0%, 100%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(-36,-40)' fill='url(%23a)'/></svg>")
 }
 
 nav {
@@ -129,6 +130,8 @@ i:hover {
     text-align: center;
     padding-bottom: .5em;
     line-height: .5em;
+
+    filter: hue-rotate(-68deg) contrast(108%) saturate(124%);
 }
 
 #inner-card img {
@@ -136,6 +139,14 @@ i:hover {
     height: 360px; 
     object-fit: cover;
     border-radius: .4em .4em 0 0;
+    
+}
+
+#inner-card:hover {
+    filter: hue-rotate(0) contrast(100%) saturate(100%);
+    scale: 1.0314;
+    transition: .314s ease-in-out;
+    transition-delay: 0.0314s;
 }
 
 /* ------------------------------------------------------------------------------------------------------ */
