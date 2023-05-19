@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
+    <title>Projects</title>
+    <link rel="icon" href="Assets/Images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="Style/Style.css">
     <script src="https://kit.fontawesome.com/81634d0f93.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     
     <nav>
@@ -15,7 +17,7 @@
             <ul>
                 <li>
                     <a class="nav-option" href="https://dumbways.id/" target="_blank">
-                    <img src="Images/dumbways-logo.png" alt="DumbWays ID logo">
+                    <img src="Assets/Images/dumbways-logo.png" alt="DumbWays ID logo">
                     </a>
                 </li>
 
@@ -37,6 +39,169 @@
             </a>
         </div>
     </nav>
+
+    <h2 class="page-title">ADD A NEW PROJECT</h2>
+
+    <form onsubmit="postProject(event)">
+        <div>
+            <label class="mandatory-field" for="project-name-input">Project Name</label>
+            <input type="text" placeholder="Landing Page UX Design" id="project-name-input" autocomplete="off" autocapitalize="words" required />
+        </div>
+
+        <div id="date-split">
+            <div>
+                <label class="mandatory-field" for="start-date-input">Start Date</label>
+                <input type="date" id="start-date-input" required />
+            </div>
+            <div>
+                <label class="mandatory-field" for="finish-date-input">Finish Date</label>
+                <input type="date" id="finish-date-input" required />
+            </div>
+        </div>
+
+        <div>
+            <label class="mandatory-field" for="description-input">Description</label>
+            <textarea placeholder="Highlight what's the best part of your project" id="description-input" autocomplete="off" autocapitalize="sentences"></textarea>
+        </div>
+
+        <div>
+            <label>Technologies</label>
+            <div id="checkbox-group">
+                <div class="checkbox-sub-group">
+                    <input type="checkbox" id="js-check" />
+                    <label for="js-check" class="check-label">Javascript</label>
+                </div>
+                <div class="checkbox-sub-group">
+                    <input type="checkbox" id="bootstrap-check" />
+                    <label for="bootstrap-check" class="check-label">Bootstrap</label>
+                </div>
+                <div class="checkbox-sub-group">
+                    <input type="checkbox" id="go-check" />
+                    <label for="go-check" class="check-label">Go</label>
+                </div>
+                <div class="checkbox-sub-group">
+                    <input type="checkbox" id="react-check" />
+                    <label for="react-check" class="check-label">React</label>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label class="mandatory-field">Upload Image</label>
+            <div id="image-input-wrap">
+                <label for="image-input">
+                    <p>Choose</p>
+                    <i class="fa-solid fa-paperclip fa-fw"></i>
+                </label>
+                <input type="file" id="image-input" required hidden />
+            </div>
+        </div>
+
+        <button class="submit-button" type="submit" onclick="emptyFormAlert()">Post</button>
+    </form>
+
+    <main id="wrap-up-the-scroll">
+        <h2 class="page-title">AVAILABLE PROJECTS</h2>
+
+        <section id="wrap-up-the-cards">
+            <div class="project-preview-card">
+                <img src="Assets/Images/mobile-app.jpg" alt="Smartphone"/>
+                <a href="Project-Detail.html">
+                    <h4>Pillboard App - 2023</h4>
+                </a>
+                <p class="duration">Duration: 8 months</p>
+                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem libero aut?</p>
+                <div class="tech-icons">
+                    <i class="fa-brands fa-square-js fa-xl fa-fw" id="js-icon"></i>
+                    <i class="fa-brands fa-bootstrap fa-xl fa-fw" id="bootstrap-icon"></i>
+                    <i class="fa-brands fa-golang fa-xl fa-fw" id="go-icon"></i>
+                    <i class="fa-brands fa-react fa-xl fa-fw" id="react-icon"></i>
+                </div>
+                <div class="card-buttons">
+                    <button class="edit-button">Edit</button>
+                    <button class="delete-button">Delete</button>
+                </div>
+            </div>
+
+            <div class="project-preview-card">
+                <img src="Assets/Images/compdesk.jpg" alt="Desktop and Laptop" />
+                <a href="#">
+                    <h4>Dummy 1 - 2023</h4>
+                </a>
+                <p class="duration">Duration: 8 months</p>
+                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem libero aut?</p>
+                <div class="tech-icons">
+                    <i class="fa-brands fa-square-js fa-xl"></i>
+                    <i class="fa-brands fa-bootstrap fa-xl"></i>
+                    <i class="fa-brands fa-golang fa-xl"></i>
+                    <i class="fa-brands fa-react fa-xl fa-fw"></i>
+                </div>
+                <div class="card-buttons">
+                    <button class="edit-button">Edit</button>
+                    <button class="delete-button">Delete</button>
+                </div>
+            </div>
+
+            <div class="project-preview-card">
+                <img src="Assets/Images/compdesk2.jpg" alt="Desktop and Laptop too"/>
+                <a href="#">
+                    <h4>Dummy 2 - 2023</h4>
+                </a>
+                <p class="duration">Duration: 8 months</p>
+                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem libero aut?</p>
+                <div class="tech-icons">
+                    <i class="fa-brands fa-square-js fa-xl"></i>
+                    <i class="fa-brands fa-bootstrap fa-xl"></i>
+                    <i class="fa-brands fa-golang fa-xl"></i>
+                    <i class="fa-brands fa-react fa-xl fa-fw"></i>
+                </div>
+                <div class="card-buttons">
+                    <button class="edit-button">Edit</button>
+                    <button class="delete-button">Delete</button>
+                </div>
+            </div>
+
+            <div class="project-preview-card">
+                <img src="Assets/Images/server.jpg" alt="Server Room" />
+                <a href="#">
+                    <h4>Dummy 3 - 2023</h4>
+                </a>
+                <p class="duration">Duration: 8 months</p>
+                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem libero aut?</p>
+                <div class="tech-icons">
+                    <i class="fa-brands fa-square-js fa-xl"></i>
+                    <i class="fa-brands fa-bootstrap fa-xl"></i>
+                    <i class="fa-brands fa-golang fa-xl"></i>
+                    <i class="fa-brands fa-react fa-xl fa-fw"></i>
+                </div>
+                <div class="card-buttons">
+                    <button class="edit-button">Edit</button>
+                    <button class="delete-button">Delete</button>
+                </div>
+            </div>
+
+            <div class="project-preview-card">
+                <img src="Assets/Images/fish.jpg" alt="Fish Pond"/>
+                <a href="#">
+                    <h4>Dummy 4 - 2023</h4>
+                </a>
+                <p class="duration">Duration: 8 months</p>
+                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem libero aut?</p>
+                <div class="tech-icons">
+                    <i class="fa-brands fa-square-js fa-xl"></i>
+                    <i class="fa-brands fa-bootstrap fa-xl"></i>
+                    <i class="fa-brands fa-golang fa-xl"></i>
+                    <i class="fa-brands fa-react fa-xl fa-fw"></i>
+                </div>
+                <div class="card-buttons">
+                    <button class="edit-button">Edit</button>
+                    <button class="delete-button">Delete</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="JS/My-Project.js"></script>
 
 </body>
 </html>

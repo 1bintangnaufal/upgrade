@@ -12,7 +12,7 @@ function sendMessage() {
     } else if(phone == "") {
         return alert("What's your phone number?");
     } else if(subject == "") {
-        return alert("Please select a subject")
+        return alert("Please select a subject");
     }
 
     const sendTarget = "1bintangnaufal@gmail.com";
