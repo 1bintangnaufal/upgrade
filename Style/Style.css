@@ -23,6 +23,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    z-index: 9999;
 }
 
 #left-nav ul {
@@ -44,12 +46,12 @@ nav {
 .nav-option {
     color: #181823;
     font-weight: bolder;
+
+    transition: color .3s ease-in-out;
 }
 
 .nav-option:hover {
     color: #ff4c34;
-    transition: ease-in-out 0.314s;
-    transition-delay: 0.0314s;
 }
 /* ------------------------------------------------------------------------------------------------------- */
 
@@ -76,9 +78,27 @@ nav {
 
 #CTAs {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 2em;
     margin-top: 48px;
+}
+
+#CTAs p {
+    line-height: 0;
+}
+
+#CTAs i {
+    margin-left: .75em;
+}
+
+#CTAs #not-button {
+    transition: color .3s ease-in-out;
+    display: flex;
+    align-items: baseline;
+}
+
+#CTAs #not-button:hover {
+    color: #ff4c34;
 }
 /* ------------------------------------------------------------------------------------------------------- */
 
@@ -89,13 +109,13 @@ button {
     border-radius: .4em; 
     border: none; 
     padding: .8em 1.2em;
+
+    transition: background-color .3s ease-in-out;
 }
 
 button:hover {
     background-color: #ff4c34;
     cursor: pointer;
-    transition: ease-in-out 0.314s;
-    transition-delay: 0.0314s;
 }
 /* ------------------------------------------------------------------------------------------------------- */
 
@@ -109,18 +129,17 @@ button:hover {
     display: flex; 
     justify-content: baseline; 
     margin-top: 48px; 
-    gap: 2em;
+    gap: 1em;
 }
 
 i {
     color: #181823;
+    transition: color .3s ease-in-out;
 }
 
 i:hover {
     color: #ff4c34;
     cursor: pointer;
-    transition: ease-in-out 0.314s;
-    transition-delay: 0.0314s;
 }
 
 #right-hand {
@@ -136,6 +155,8 @@ i:hover {
     line-height: .5em;
 
     filter: hue-rotate(-68deg) contrast(108%) saturate(124%);
+
+    transition: scale .3s ease-in-out, filter .3s ease-in-out;
 }
 
 #inner-card img {
@@ -143,14 +164,11 @@ i:hover {
     height: 340px; 
     object-fit: cover;
     border-radius: .4em .4em 0 0;
-    
 }
 
 #inner-card:hover {
     filter: hue-rotate(0) contrast(100%) saturate(100%);
-    scale: 1.0314;
-    transition: .314s ease-in-out;
-    transition-delay: 0.0314s;
+    scale: 1.03;
 }
 /* ------------------------------------------------------------------------------------------------------ */
 
@@ -214,6 +232,28 @@ textarea {
     resize: none;
     height: 8em;
 }
+
+#select-wrap {
+    position: relative;
+    margin-bottom: 0;
+}
+
+#select-wrap #subject-input {
+    appearance: none;
+    cursor: pointer;
+}
+
+#drop-down i {
+    position: absolute;
+    top: 50%;
+    right: 1em;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+select option {
+    background-color: #F1F6F9;
+}
 /* ----------------------------------------------------------------------------------------------------- */
 
 /* ----------------------------------------------------------------------------------------------------- */
@@ -239,6 +279,11 @@ textarea {
 
 #date-split div {
     width: 49%;
+}
+
+#start-date-input,
+#finish-date-input {
+    cursor: pointer;
 }
 
 #checkbox-group {
@@ -285,19 +330,21 @@ input[type="checkbox"] {
     border-radius: .2em;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+
+    transition: background-color .3s ease-in-out;
 }
 
 .check-label:hover::before,
 input[type="checkbox"]:hover + .check-label::before {
     background-color: #ff4c34;
-    transition: ease-in-out .3s;
-    transition-delay: .03s;
 }
 
 input[type="checkbox"]:focus + .check-label::before {
     outline-style: solid;
     outline-width: thin;
     outline-color: #ff4c34;
+
+    transition: background-color .3s ease-in-out;
 }
 
 input[type="checkbox"]:checked + .check-label::before {
@@ -320,23 +367,42 @@ input[type="checkbox"]:checked + .check-label::before {
     margin-bottom: 0;
 }
 
+#image-file-name {
+    font-weight: normal;
+    font-size: smaller;
+    color: #6a6a6f;
+
+    position: absolute;
+    left: 12.5%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 1em;
+
+    display: block;
+    max-width: 76.75%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 #image-input-wrap label p {
     font-size: small;
     background-color: #F1F6F9;
     border-radius: .4em 0 0 .4em;
     margin: 0;
     padding: 1em;
+
+    transition: color .3s ease-in-out;
 }
 
 #image-input-wrap label p:hover {
     color: #ff4c34;
-    transition: ease-in-out .3s;
-    transition-delay: .03s;
 }
 
 #image-input-wrap {
     margin-bottom: 0;
     padding-bottom: 0;
+    position: relative;
 }
 /* ------------------------------------------------------------------------------------------------------ */
 
@@ -378,18 +444,24 @@ input[type="checkbox"]:checked + .check-label::before {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: .4em;
     padding: .5em .5em 1em .5em;
+
+    transition: transform .3s ease-in-out;
+}
+
+.project-preview-card:hover {
+    transform: scale(1.03);
 }
 
 .project-preview-card h4 {
     color: black;
     line-height: .8;
     margin: .5em 0;
+
+    transition: color 0.314s ease-in-out;
 }
 
 .project-preview-card h4:hover {
     color: #ff4c34;
-    transition: ease-in-out 0.314s;
-    transition-delay: 0.0314s;
 }
 
 .project-preview-card .duration {
@@ -403,6 +475,13 @@ input[type="checkbox"]:checked + .check-label::before {
     font-size: small;
     margin-bottom: 1.5em;
     line-height: 1.25;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
 }
 
 .tech-icons {

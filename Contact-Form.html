@@ -42,7 +42,7 @@
 
     <!-- ------------------------------------------------------------------------------------------------- -->
 
-    <h2 class="page-title">HIT ME UP</h2>
+    <h2 class="page-title">HIT ME UP 😉</h2>
 
     <form>
         <div>
@@ -62,13 +62,16 @@
 
         <div>
             <label class="mandatory-field" for="subject-input">Subject</label>
-            <select id="subject-input" required>
-                <option value="" hidden>Select Subject</option>
-                <option value="Suggestion">Suggestion</option>
-                <option value="Collaboration request">Collaboration request</option>
-                <option value="Meeting request">Meeting request</option>
-                <option value="Something else">Something else</option>
-            </select>
+            <div id="select-wrap">
+                <select id="subject-input" required>
+                    <option value="" hidden>Select Subject</option>
+                    <option value="Suggestion">Suggestion</option>
+                    <option value="Collaboration request">Collaboration request</option>
+                    <option value="Meeting request">Meeting request</option>
+                    <option value="Something else">Something else</option>
+                </select>
+                <span id="drop-down"><i class="fa-solid fa-caret-down"></i></span>
+            </div>
         </div>
 
         <div>

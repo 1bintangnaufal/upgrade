@@ -40,7 +40,7 @@
         </div>
     </nav>
 
-    <h2 class="page-title">ADD A NEW PROJECT</h2>
+    <h2 class="page-title">ADD A NEW PROJECT 🏗️</h2>
 
     <form onsubmit="postProject(event)">
         <div>
@@ -61,26 +61,26 @@
 
         <div>
             <label class="mandatory-field" for="description-input">Description</label>
-            <textarea placeholder="Highlight what's the best part of your project" id="description-input" autocomplete="off" autocapitalize="sentences"></textarea>
+            <textarea placeholder="Highlight the best part(s) of your project" id="description-input" autocomplete="off" autocapitalize="sentences"></textarea>
         </div>
 
         <div>
-            <label>Technologies</label>
+            <label class="mandatory-field">Technologies</label>
             <div id="checkbox-group">
                 <div class="checkbox-sub-group">
-                    <input type="checkbox" id="js-check" />
+                    <input type="checkbox" id="js-check" class="multi-input" />
                     <label for="js-check" class="check-label">Javascript</label>
                 </div>
                 <div class="checkbox-sub-group">
-                    <input type="checkbox" id="bootstrap-check" />
+                    <input type="checkbox" id="bootstrap-check" class="multi-input" />
                     <label for="bootstrap-check" class="check-label">Bootstrap</label>
                 </div>
                 <div class="checkbox-sub-group">
-                    <input type="checkbox" id="go-check" />
+                    <input type="checkbox" id="go-check" class="multi-input" />
                     <label for="go-check" class="check-label">Go</label>
                 </div>
                 <div class="checkbox-sub-group">
-                    <input type="checkbox" id="react-check" />
+                    <input type="checkbox" id="react-check" class="multi-input" />
                     <label for="react-check" class="check-label">React</label>
                 </div>
             </div>
@@ -91,9 +91,10 @@
             <div id="image-input-wrap">
                 <label for="image-input">
                     <p>Choose</p>
+                    <div id="image-file-name"></div>
                     <i class="fa-solid fa-paperclip fa-fw"></i>
                 </label>
-                <input type="file" id="image-input" required hidden />
+                <input type="file" id="image-input" accept="image/*" onchange="showFileName()" required hidden />
             </div>
         </div>
 
