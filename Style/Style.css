@@ -18,28 +18,6 @@
     scroll-behavior: smooth;
 }
 
-/* :root {
-    --background-color: #121212;
-    --primary-color: #282828;
-    --background-pattern: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='20' patternTransform='scale(2) rotate(65)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(0, 0%, 7%, 1)'/><path d='M40 0L20-10V0l20 10zm0 10L20 0v10l20 10zm0 10L20 10v10l20 10zM0 20l20-10v10L0 30zm0-10L20 0v10L0 20zM0 0l20-10V0L0 10z'  stroke-width='0.5' stroke='hsla(0, 0%, 16%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")
-    --secondary-color: #f1f6f9;
-    --tertiary-color: #ff6549;
-    --shadow-color-sharp: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-    --shadow-color-soft: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    --subtle-text-color: #bababc;
-} */
-
-/* .dark-theme {
-    --background-color: #121212;
-    --primary-color: #282828;
-    --background-pattern: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='20' patternTransform='scale(2) rotate(65)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(0, 0%, 7%, 1)'/><path d='M40 0L20-10V0l20 10zm0 10L20 0v10l20 10zm0 10L20 10v10l20 10zM0 20l20-10v10L0 30zm0-10L20 0v10L0 20zM0 0l20-10V0L0 10z'  stroke-width='0.5' stroke='hsla(0, 0%, 16%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")
-    --secondary-color: #f1f6f9;
-    --tertiary-color: #ff6549;
-    --shadow-color-sharp: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-    --shadow-color-soft: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    --subtle-text-color: #bababc;
-} */
-
 body {
     margin: 0;
     background-color: var(--background-color);
@@ -720,9 +698,17 @@ input[type="checkbox"]:checked + .check-label::before {
 
 /* -------------------------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 767px) {
+    html{
+        height: -webkit-fill-available;
+    }
+
+    body {
+        height: 100vh;
+        height: -webkit-fill-available;
+    }
+
     #parent-card-container {
         flex-direction: column;
-        
     }
 
     #first-section {
@@ -758,10 +744,12 @@ input[type="checkbox"]:checked + .check-label::before {
 
     #date-split {
         display: block;
+        width: 100vw;
     }
 
     #date-split div {
         width: 100%;
+        width: -webkit-fill-available;
     }
 
     #wrap-up-the-cards {
