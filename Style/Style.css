@@ -744,6 +744,7 @@ input[type="checkbox"]:checked + .check-label::before {
 
     #date-split {
         display: block;
+        width: 100%;
         width: -webkit-fill-available;
     }
 
