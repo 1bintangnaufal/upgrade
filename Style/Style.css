@@ -743,14 +743,12 @@ input[type="checkbox"]:checked + .check-label::before {
     }
 
     #date-split {
-        display: block;
-        width: 100%;
-        width: -webkit-fill-available;
+        flex-direction: column;
+        justify-content: center;
     }
 
     #date-split div {
         width: 100%;
-        width: -webkit-fill-available;
     }
 
     #wrap-up-the-cards {
