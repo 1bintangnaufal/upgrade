@@ -748,7 +748,7 @@ input[type="checkbox"]:checked + .check-label::before {
     }
 
     #date-split div {
-        width: 100%;
+        width: 100% !important;
     }
 
     #wrap-up-the-cards {
