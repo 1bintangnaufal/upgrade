@@ -21,11 +21,11 @@
                     </a>
                 </li>
 
-                <li>
+                <li class="nav-option-li">
                     <a class="nav-option" href="Index.html" style="font-weight: normal;">HOME</a>
                 </li>
 
-                <li>
+                <li class="nav-option-li">
                     <a class="nav-option" href="My-Project.html">MY PROJECT</a>
                 </li>
             </ul>
@@ -38,8 +38,23 @@
                 </button>
             </a>
         </div>
+
+        <button id="nav-toggle" onclick="toggleOverlay()">
+            <i class="fa-solid fa-bars-staggered fa-2xl"></i>
+        </button>
     </nav>
 
+    <div id="toggle-overlay">
+        <a href="Index.html" class="nav-option" style="font-weight: normal;">
+            HOME
+        </a>
+        <a href="My-Project.html" class="nav-option">
+            MY PROJECT
+        </a>
+        <a href="Contact-Form.html">
+            <button type="button">Contact</button>
+        </a>
+    </div>
     <!-- ------------------------------------------------------------------------------------------------- -->
 
     <h2 class="page-title">Pillboard App - 2023</h2>
@@ -109,3 +124,8 @@
             </div>
         </section>
     </main>
+
+    <script src="JS/Mobile-Nav-Toggle.js"></script>
+    
+</body>
+</html>
