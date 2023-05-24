@@ -801,7 +801,7 @@ input[type="checkbox"]:checked + .check-label::before {
     #nav-toggle {
         display: block;
         background-color: transparent;
-        margin-right: -1.5em;
+        margin-right: -1.2em;
     }
 
     #toggle-overlay {
