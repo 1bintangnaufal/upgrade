@@ -316,6 +316,7 @@ select option {
 @media only screen and (min-width: 768px) {
     #date-split {
         flex-direction: row;
+        width: 100%;
         gap: 0 1em;
     }
     
@@ -327,6 +328,7 @@ select option {
 #start-date-input,
 #finish-date-input {
     cursor: pointer;
+    width: auto;
 }
 
 #checkbox-group {
@@ -829,5 +831,18 @@ input[type="checkbox"]:checked + .check-label::before {
     @keyframes slide-in {
         0% {transform: translateY(-100%);}
         100% {transform: translateY(0);}
+    }
+}
+
+@media (prefers-color-sceheme: dark) {
+    :root {
+        --background-color: #282828;
+        --primary-color: #121212;
+        --background-pattern: none;
+        --secondary-color: #181823;
+        --tertiary-color: #ff4c34;
+        --shadow-color-sharp: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+        --shadow-color-soft: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        --subtle-text-color: #6a6a6f;
     }
 }
