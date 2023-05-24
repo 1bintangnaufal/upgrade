@@ -49,6 +49,7 @@ nav {
 
 #left-nav li {
     padding-right: 2em;
+    line-height: 0;
 }
 
 #left-nav img {
@@ -329,6 +330,7 @@ select option {
 #finish-date-input {
     cursor: pointer;
     width: auto;
+    appearance: none;
 }
 
 #checkbox-group {
@@ -715,16 +717,8 @@ input[type="checkbox"]:checked + .check-label::before {
 
 /* -------------------------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 767px) {
-    html{
-        height: -webkit-fill-available;
-    }
-
-    body {
-        height: 100vh;
-        height: -webkit-fill-available;
-    }
-
-    #parent-card-container {
+    
+#parent-card-container {
         flex-direction: column;
     }
 
