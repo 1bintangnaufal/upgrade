@@ -306,12 +306,12 @@ select option {
 #date-split {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     margin-bottom: 0px;
+    gap: 0 1em;
 }
 
 #date-split div {
-    width: 49%;
+    width: 100%;
 }
 
 #start-date-input,
@@ -670,6 +670,11 @@ input[type="checkbox"]:checked + .check-label::before {
         max-inline-size: 60%;
     }
 
+    #image-file-name {
+        margin-left: 2em;
+        max-width: 70%;
+    }
+
     #wrap-up-the-cards {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -744,11 +749,11 @@ input[type="checkbox"]:checked + .check-label::before {
 
     #date-split {
         flex-direction: column;
-        justify-content: center;
     }
 
-    #date-split div {
-        width: 100% !important;
+    #image-file-name {
+        margin-left: 4em;
+        max-width: 50%;
     }
 
     #wrap-up-the-cards {
