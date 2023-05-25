@@ -4,5 +4,5 @@ function toggleOverlay() {
         overlay.style.display = "none";
     } else {
         overlay.style.display = "flex";
-    }
+    };
 };
