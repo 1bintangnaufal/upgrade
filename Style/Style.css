@@ -806,30 +806,55 @@ input[type="checkbox"]:checked + .check-label::before {
         display: block;
         background-color: transparent;
         padding: 0;
+        transform: rotate(0);
+
+        transition: transform .5s ease-out;
     }
 
     #toggle-overlay {
-        /* display: flex; */
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5em;
+        display: grid;
+        grid-template-rows: 0fr;
+        justify-content: center;
+    
         z-index: 9998;
         box-shadow: var(--shadow-color-sharp);
         background-color: var(--primary-color);
+        
         width: 100%;
-        margin: 0 0 1.5em;
-        padding: 1.5em 0;
 
-        animation-name: slide-in;
-        animation-duration: .3s;
-        animation-timing-function: ease-out;
         position: fixed;
+
+        transition: grid-template-rows .5s ease-out;
     }
 
-    @keyframes slide-in {
+    #toggle-overlay div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1px;
+        overflow: hidden;
+    }
+
+    #toggle-overlay div a {
+        margin: .75em 0;
+    }
+
+    #toggle-overlay #margin-top {
+        margin-top: 1.75em;
+    }
+
+    #toggle-overlay #margin-bottom {
+        margin-bottom: 2.75em;
+    }
+
+    /* #toggle-overlay > div {
+        
+    } */
+
+    /* @keyframes slide-in {
         0% {transform: translateY(-100%);}
         100% {transform: translateY(0);}
-    }
+    } */
 }
 
 /* @media (prefers-color-sceheme: dark) {

@@ -20,6 +20,8 @@
     margin: 2em;
     justify-content: center;
     gap: 2em;
+
+    margin-bottom: 64px;
 }
 
 .card {
