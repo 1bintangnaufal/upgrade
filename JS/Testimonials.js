@@ -1,60 +1,87 @@
-class testimonials {
-    #image = "";
-    #commentary = "";
-    #author = "";
+const cardData = [
+    {
+    image: "Assets/Images/minnie.jpg",
+    commentary: "Keren 😳",
+    rating: 4,
+    author: "Minnie"
+    },
 
-    constructor(image, commentary, author) {
-        this.#image = image;
-        this.#commentary = commentary;
-        this.#author = author;
-    };
+    {
+    image: "Assets/Images/yuqi.jpg",
+    commentary: "Apa ini? Siapa suruh begini ha?",
+    rating: 2,
+    author: "Yuqi"
+    },
 
-    get image() {
-        return this.#image;
-    };
+    {
+    image: "Assets/Images/shuhua.jpg",
+    commentary: "Sopan santunnya lebih diterapkan lagi ya kak",
+    rating: 1,
+    author: "Shuhua"
+    },
 
-    get commentary() {
-        return this.#commentary;
-    };
+    {
+    image: "Assets/Images/soyeon.jpg",
+    commentary: "Kalo dikasih kerjaan tuh kerjain yang bener",
+    rating: 2,
+    author: "Soyeon"
+    },
 
-    get author() {
-        return this.#author;
-    };
+    {
+    image: "Assets/Images/soojin.jpg",
+    commentary: "Yang sabar ya kak",
+    rating: 3,
+    author: "Soojin"
+    },
 
-    get markUp() {
-        return `
+    {
+    image: "Assets/Images/miyeon.jpg",
+    commentary: "Hebat!",
+    rating: 4,
+    author: "Miyeon"
+    },
+];
+
+function showAll() {
+    let markUp = "";
+
+    cardData.forEach(function (item) {
+        markUp += `
         <div class="card">
-            <img src="${this.image}">
-            <p>"${this.commentary}"</p>
-            <p class="author">- ${this.author}</p>
+            <img src="${item.image}">
+            <p>"${item.commentary}"</p>
+            <p class="author">${item.rating} <i class="fa-solid fa-star fa-fw"></i> from ${item.author}</p>
         </div>
-        `
+        `;
+    });
+
+    document.getElementById("card-wrap").innerHTML = markUp;
+};
+
+showAll();
+
+function sort(rating) {
+    let markUp = "";
+
+    const sorted = cardData.filter(function (item) {
+        return item.rating === rating;
+    });
+
+    if (sorted.length === 0) {
+        markUp += `
+        <h2>Empty</h2>
+        `;
+    } else {
+        sorted.forEach(function (item) {
+            markUp += `
+            <div class="card">
+                <img src="${item.image}">
+                <p>"${item.commentary}"</p>
+                <p class="author">${item.rating} <i class="fa-solid fa-star fa-fw"></i> from ${item.author}</p>
+            </div>
+            `;
+        });
     };
+
+    document.getElementById("card-wrap").innerHTML = markUp;
 };
-
-const cardData_1 = new testimonials(
-    "Assets/Images/minnie.jpg",
-    "Keren 😳",
-    "Minnie"
-);
-
-const cardData_2 = new testimonials(
-    "Assets/Images/yuqi.jpg",
-    "Apa ini? Siapa suruh begini ha?",
-    "Yuqi"
-);
-
-const cardData_3 = new testimonials(
-    "Assets/Images/shuhua.jpg",
-    "Sopan santunnya lebih diterapkan lagi ya kak",
-    "Shuhua"
-);
-
-let wholeCardData = [cardData_1, cardData_2, cardData_3];
-let markUp = "";
-
-for (let i = 0; i < wholeCardData.length; i++) {
-    markUp += wholeCardData[i].markUp;
-};
-
-document.getElementById("card-wrap").innerHTML = markUp;

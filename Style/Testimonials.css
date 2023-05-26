@@ -1,3 +1,19 @@
+#clue {
+    text-align: center;
+}
+
+#switch-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+#switch-buttons i {
+    color: #f1f6f9;
+    margin-left: .25em;
+}
+
 .card-wrap {
     display: flex;
     flex-wrap: wrap;
