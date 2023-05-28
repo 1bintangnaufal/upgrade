@@ -89,7 +89,6 @@
 
     #inner-card {
         background-color: var(--background-color);
-        filter: none !important;
     }
 
     .card-buttons .delete-button:hover {
@@ -194,6 +193,10 @@ nav {
 #first-section h2 {
     margin: 0;
     line-height: 1;
+}
+
+#first-section h2 span {
+    color: var(--tertiary-color);
 }
 
 #first-section {
@@ -746,6 +749,7 @@ input[type="checkbox"]:checked + .check-label::before {
 
 .pd-paragraph p {
     text-align: justify;
+    text-indent: 2rem;
 }
 /* -------------------------------------------------------------------------------------------------------- */
 
