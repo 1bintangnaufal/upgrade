@@ -1,18 +1,18 @@
-@media (prefers-color-scheme: dark) {
-    #switch-buttons i {
+.dark-mode {
+    & #switch-buttons i {
         color: #202220 !important;
     }
 
-    .card {
+    & .card {
         background-color: #0f100f !important;
         box-shadow: none !important;
     }
 
-    h4 {
+    & h4 {
         font-weight: 301;
     }
 
-    #switch-buttons button:focus {
+    & #switch-buttons button:focus {
         background-color: #acee86 !important;
     }
 }

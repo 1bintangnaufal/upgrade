@@ -6,6 +6,8 @@
     letter-spacing: .025em;
 }
 
+/* @use postcss-preset-env; */
+
 :root {
     --background-color: #f1f6f9;
     --primary-color: #ffffff;
@@ -18,89 +20,87 @@
     scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        scroll-behavior: smooth;
-        --background-color: #202220;
-        --primary-color: #0f100f;
-        --secondary-color: #eaf3ea;
-        --tertiary-color: #acee86;
-        --shadow-color-sharp: none;
-        --shadow-color-soft: none;
-        --subtle-text-color: #bdbdbd;
+.dark-mode {
+    --background-color: #202220;
+    --primary-color: #0f100f;
+    --secondary-color: #eaf3ea;
+    --tertiary-color: #acee86;
+    --shadow-color-sharp: none;
+    --shadow-color-soft: none;
+    --subtle-text-color: #bdbdbd;
+
+    & #dark-logo {
+        display: block;
     }
 
-    body {
-        background: linear-gradient(45deg, transparent 49%, #0f100f 49% 51%, transparent 51%) , linear-gradient(-45deg, transparent 49%, #0f100f 49% 51%, transparent 51%) !important;
-        background-size: 3em 3em !important;
-        background-color: #202220 !important;
-        opacity: 1 !important;
-    }
+    background: linear-gradient(45deg, transparent 49%, #0f100f 49% 51%, transparent 51%) , linear-gradient(-45deg, transparent 49%, #0f100f 49% 51%, transparent 51%);
+    background-size: 3em 3em;
+    background-color: var(--background-color);
+    opacity: 1;
 
-    p {
+    & p {
         font-weight: 301 !important;
     }
 
-    #light-logo {
+    & #light-logo {
         display: none;
     }
 
-    ::placeholder {
+    & ::placeholder {
         color: var(--subtle-text-color);
     }
 
-    .mandatory-field::after {
+    & .mandatory-field::after {
         color: #f45f5f !important;
     }
 
-    .check-label::before {
+    & .check-label::before {
         background-color: var(--background-color) !important;
     }
 
-    input, textarea, select {
+    & input, textarea, select {
         background-color: var(--background-color) !important;
     }
 
-    input[type="date"] {
+    & input[type="date"] {
         color-scheme: dark !important;
     }
 
-    input[type="checkbox"]:checked + .check-label::before {
+    & input[type="checkbox"]:checked + .check-label::before {
         background-color: var(--secondary-color) !important;
     }
 
-    #image-input-wrap label {
+    & #image-input-wrap label {
         background-color: var(--background-color) !important;
     }
 
-    #image-input-wrap label p {
+    & #image-input-wrap label p {
         background-color: var(--secondary-color) !important;
         color: #1e211e;
         font-weight: normal !important;
     }
 
-    #image-input-wrap label p:hover {
+    & #image-input-wrap label p:hover {
         color: #34ab34 !important;
     }
 
-    .project-preview-card {
+    & .project-preview-card {
         background-color: var(--background-color) !important;
     }
 
-    #inner-card {
+    & #inner-card {
         background-color: var(--background-color);
     }
 
-    .card-buttons .delete-button:hover {
+    & .card-buttons .delete-button:hover {
         background-color: #f45f5f !important;
         color: var(--secondary-color) !important;
     }
 }
 
-@media (prefers-color-scheme: light) {
-    #dark-logo {
-        display: none;
-    }
+
+#dark-logo {
+    display: none;
 }
 
 p, h1, h2, h3, h4, h5, h6, label, input, textarea, select {
@@ -166,8 +166,14 @@ nav {
     color: var(--tertiary-color);
 }
 
-#right-nav i {
-    margin-right: 1em;
+#theme-switch {
+    background-color: transparent;
+    padding: 0;
+    margin-right: 2em;
+}
+
+#theme-switch i {
+    margin: 0;
 }
 
 #nav-toggle,
@@ -901,10 +907,11 @@ input[type="checkbox"]:checked + .check-label::before {
     }
 
     nav .nav-option-li,
-    nav #right-nav {
+    nav #contact-button-a-hidden {
         display: none;
     }
 
+    
     #nav-toggle {
         display: block;
         background-color: transparent;
@@ -916,6 +923,19 @@ input[type="checkbox"]:checked + .check-label::before {
 
     .active-page {
         color: var(--tertiary-color);
+    }
+
+    #right-nav {
+        display: flex;
+        gap: 1.25em;
+    }
+
+    #right-nav i {
+        margin-right: 0;
+    }
+
+    #theme-switch {
+        margin-right: 0;
     }
 
     #toggle-overlay {

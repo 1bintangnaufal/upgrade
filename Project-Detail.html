@@ -37,16 +37,21 @@
         </div>
 
         <div id="right-nav">
-            <a href="Contact-Form.html">
+            <button id="theme-switch">
+                <i class="fa-solid fa-moon fa-2xl fa-fw"></i>
+            </button>
+
+            <a href="Contact-Form.html" id="contact-button-a-hidden">
                 <button type="button">
                     Contact
                 </button>
             </a>
+
+            <button id="nav-toggle" onclick="toggleOverlay()">
+                <i class="fa-solid fa-bars-staggered fa-2xl"></i>
+            </button>
         </div>
 
-        <button id="nav-toggle" onclick="toggleOverlay()">
-            <i class="fa-solid fa-bars-staggered fa-2xl"></i>
-        </button>
     </nav>
 
     <div id="toggle-overlay">
