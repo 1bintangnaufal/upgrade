@@ -2,15 +2,15 @@
 @import url('https://api.fontshare.com/v2/css?f[]=switzer@101,600,701,800,501,601,900,100,700,901,400,201,401,200,300,301,801,500&display=swap');
 * {
     font-family: 'Switzer', sans-serif;
-    text-decoration: none;        
+    text-decoration: none;
+    letter-spacing: .025em;
 }
 
 :root {
     --background-color: #f1f6f9;
     --primary-color: #ffffff;
-    --background-pattern: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='20' patternTransform='scale(2) rotate(65)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(202, 40%, 96%, 1)'/><path d='M40 0L20-10V0l20 10zm0 10L20 0v10l20 10zm0 10L20 10v10l20 10zM0 20l20-10v10L0 30zm0-10L20 0v10L0 20zM0 0l20-10V0L0 10z'  stroke-width='0.5' stroke='hsla(259, 0%, 100%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(-36,-40)' fill='url(%23a)'/></svg>");
     --secondary-color: #181823;
-    --tertiary-color: #ff4c34;
+    --tertiary-color: #34ab34;
     --shadow-color-sharp: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
     --shadow-color-soft: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     --subtle-text-color: #6a6a6f;
@@ -18,10 +18,102 @@
     scroll-behavior: smooth;
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        scroll-behavior: smooth;
+        --background-color: #202220;
+        --primary-color: #0f100f;
+        --secondary-color: #eaf3ea;
+        --tertiary-color: #acee86;
+        --shadow-color-sharp: none;
+        --shadow-color-soft: none;
+        --subtle-text-color: #bdbdbd;
+    }
+
+    body {
+        background: linear-gradient(45deg, transparent 49%, #0f100f 49% 51%, transparent 51%) , linear-gradient(-45deg, transparent 49%, #0f100f 49% 51%, transparent 51%) !important;
+        background-size: 3em 3em !important;
+        background-color: #202220 !important;
+        opacity: 1 !important;
+    }
+
+    p {
+        font-weight: 301 !important;
+    }
+
+    #light-logo {
+        display: none;
+    }
+
+    ::placeholder {
+        color: var(--subtle-text-color);
+    }
+
+    .mandatory-field::after {
+        color: #f45f5f !important;
+    }
+
+    .check-label::before {
+        background-color: var(--background-color) !important;
+    }
+
+    input, textarea, select {
+        background-color: var(--background-color) !important;
+    }
+
+    input[type="date"] {
+        color-scheme: dark !important;
+    }
+
+    input[type="checkbox"]:checked + .check-label::before {
+        background-color: var(--secondary-color) !important;
+    }
+
+    #image-input-wrap label {
+        background-color: var(--background-color) !important;
+    }
+
+    #image-input-wrap label p {
+        background-color: var(--secondary-color) !important;
+        color: #1e211e;
+        font-weight: normal !important;
+    }
+
+    #image-input-wrap label p:hover {
+        color: #34ab34 !important;
+    }
+
+    .project-preview-card {
+        background-color: var(--background-color) !important;
+    }
+
+    #inner-card {
+        background-color: var(--background-color);
+        filter: none !important;
+    }
+
+    .card-buttons .delete-button:hover {
+        background-color: #f45f5f !important;
+        color: var(--secondary-color) !important;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    #dark-logo {
+        display: none;
+    }
+}
+
+p, h1, h2, h3, h4, h5, h6, label, input, textarea, select {
+    color: var(--secondary-color)
+}
+
 body {
     margin: 0;
-    background-color: var(--background-color);
-    background-image: var(--background-pattern)
+    background: linear-gradient(45deg, transparent 49%, #ffffff 49% 51%, transparent 51%) , linear-gradient(-45deg, transparent 49%, #ffffff 49% 51%, transparent 51%);
+    background-size: 3em 3em;
+    background-color: #f1f6f9;
+    opacity: 1;
 }
 
 nav {
@@ -65,6 +157,10 @@ nav {
     color: var(--secondary-color);
     font-weight: bolder;
     transition: color .5s ease-out;
+}
+
+#nav-active {
+    color: var(--tertiary-color)
 }
 
 .nav-option:hover {
@@ -131,8 +227,12 @@ nav {
     align-items: baseline;
 }
 
-#CTAs #not-button:hover {
-    color: var(--tertiary-color);
+#CTAs #not-button p {
+    transition: color .5s ease-out;
+}
+
+#CTAs #not-button p:hover {
+    color: var(--tertiary-color) !important;
 }
 /* ------------------------------------------------------------------------------------------------------- */
 
@@ -335,6 +435,7 @@ select option {
 
 #checkbox-group {
     display: grid;
+    row-gap: .8em;
     grid-template-columns: repeat(2, 1fr);
     margin-bottom: 0px;
 }
@@ -343,8 +444,7 @@ select option {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 0;
 }
 
 #checkbox-group input {
@@ -371,8 +471,8 @@ input[type="checkbox"] {
 
 .check-label::before {
     content: '';
-    width: 1.1em;
-    height: 1.1em;
+    width: 1.25em;
+    height: 1.25em;
     margin-right: 1em;
     border-radius: .125em;
     background-color: var(--primary-color);
@@ -383,7 +483,7 @@ input[type="checkbox"] {
 
 .check-label:hover::before,
 input[type="checkbox"]:hover + .check-label::before {
-    background-color: var(--tertiary-color);
+    background-color: var(--tertiary-color) !important;
 }
 
 input[type="checkbox"]:focus + .check-label::before {
@@ -396,7 +496,8 @@ input[type="checkbox"]:focus + .check-label::before {
 
 input[type="checkbox"]:checked + .check-label::before {
     background-color: var(--secondary-color);
-    content: '\2714';
+    content: "\f00c";
+    font: var(--fa-font-solid);
     color: var(--primary-color);
     display: flex;
     justify-content: center;
@@ -571,11 +672,9 @@ input[type="checkbox"]:checked + .check-label::before {
     border-radius: 0 0 .4em 0;
 }
 
-/* .card-buttons .delete-button:hover {
-    background-color: var(--secondary-color);
-    border: none;
-    color: var(--primary-color);
-} */
+.card-buttons .delete-button:hover {
+    background-color: red;
+}
 /* ------------------------------------------------------------------------------------------------------ */
 
 /* ------------------------------------------------------------------------------------------------------ */
@@ -809,6 +908,10 @@ input[type="checkbox"]:checked + .check-label::before {
         transform: rotate(0);
 
         transition: transform .5s ease-out;
+    }
+
+    .active-page {
+        color: var(--tertiary-color);
     }
 
     #toggle-overlay {

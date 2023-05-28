@@ -1,3 +1,22 @@
+@media (prefers-color-scheme: dark) {
+    #switch-buttons i {
+        color: #202220 !important;
+    }
+
+    .card {
+        background-color: #0f100f !important;
+        box-shadow: none !important;
+    }
+
+    h4 {
+        font-weight: 301;
+    }
+
+    button:focus {
+        background-color: #acee86 !important;
+    }
+}
+
 #clue {
     text-align: center;
 }
@@ -12,6 +31,10 @@
 #switch-buttons i {
     color: #f1f6f9;
     margin-left: .25em;
+}
+
+button:focus {
+    background-color: #33cc33;
 }
 
 .card-wrap {
