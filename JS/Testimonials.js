@@ -1,58 +1,33 @@
-const cardData = [
-    {
-    image: "Assets/Images/minnie.jpg",
-    commentary: "Keren 😳",
-    rating: 4,
-    author: "Minnie"
-    },
+const promise = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.npoint.io/c23654399f5d9bc44e23", true);
+    // console.log(xhr);
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            resolve(JSON.parse(xhr.response));
+        } else {
+            reject("Error loading card data.");
+        };
+    };
 
-    {
-    image: "Assets/Images/yuqi.jpg",
-    commentary: "Apa ini? Siapa suruh begini ha?",
-    rating: 2,
-    author: "Yuqi"
-    },
+    xhr.onerror = () => {
+        reject("Network problem.");
+    };
 
-    {
-    image: "Assets/Images/shuhua.jpg",
-    commentary: "Sopan santunnya lebih diterapkan lagi ya kak",
-    rating: 1,
-    author: "Shuhua"
-    },
+    xhr.send();
+});
 
-    {
-    image: "Assets/Images/soyeon.jpg",
-    commentary: "Kalo dikasih kerjaan tuh kerjain yang bener",
-    rating: 2,
-    author: "Soyeon"
-    },
+async function showAll() {
+    const response = await promise;
 
-    {
-    image: "Assets/Images/soojin.jpg",
-    commentary: "Yang sabar ya kak",
-    rating: 3,
-    author: "Soojin"
-    },
-
-    {
-    image: "Assets/Images/miyeon.jpg",
-    commentary: "Hebat!",
-    rating: 4,
-    author: "Miyeon"
-    },
-];
-
-function showAll() {
     let markUp = "";
 
-    cardData.forEach(function (item) {
-        markUp += `
-        <div class="card">
-            <img src="${item.image}">
-            <p>"${item.commentary}"</p>
-            <p class="author">${item.rating} <i class="fa-solid fa-star fa-fw"></i> from ${item.author}</p>
-        </div>
-        `;
+    response.forEach(function(item) {
+        markUp += ` <div class="card">
+                        <img src="${item.image}">
+                        <p>"${item.commentary}"</p>
+                        <p class="author">${item.rating} <i class="fa-solid fa-star fa-fw"></i> from ${item.author}</p>
+                    </div>`;
     });
 
     document.getElementById("card-wrap").innerHTML = markUp;
@@ -60,26 +35,24 @@ function showAll() {
 
 showAll();
 
-function sort(rating) {
-    let markUp = "";
+async function sort(rating) {
+    const response = await promise;
 
-    const sorted = cardData.filter(function (item) {
+    const sorted = response.filter((item) => {
         return item.rating === rating;
     });
 
-    if (sorted.length === 0) {
-        markUp += `
-        <h2>Empty</h2>
-        `;
+    let markUp = "";
+
+    if(sorted.length === 0) {
+        markUp = `<h4>Empty</h4>`;
     } else {
-        sorted.forEach(function (item) {
-            markUp += `
-            <div class="card">
-                <img src="${item.image}">
-                <p>"${item.commentary}"</p>
-                <p class="author">${item.rating} <i class="fa-solid fa-star fa-fw"></i> from ${item.author}</p>
-            </div>
-            `;
+        sorted.forEach((item) => {
+            markUp += ` <div class="card">
+                            <img src="${item.image}">
+                            <p>"${item.commentary}"</p>
+                            <p class="author">${item.rating} <i class="fa-solid fa-star fa-fw"></i> from ${item.author}</p>
+                        </div>`;
         });
     };
 
