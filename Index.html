@@ -1,128 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="icon" href="Assets/Images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="Style/Style.css">
-    <script src="https://kit.fontawesome.com/81634d0f93.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link rel="icon" href="Assets/Images/favicon.ico" type="image/x-icon" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+
+  <script src="https://kit.fontawesome.com/81634d0f93.js" crossorigin="anonymous"></script>
+
+  <style>
+    @import url('https://api.fontshare.com/v2/css?f[]=switzer@101,600,701,800,501,601,900,100,700,901,400,201,401,200,300,301,801,500&display=swap');
+
+    * {
+      font-family: 'Switzer', sans-serif;
+    }
+
+    #ppc-container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      margin: 3em auto 64px auto;
+      grid-gap: 3em;
+      justify-items: center;
+      max-width: fit-content;
+    }
+
+    @media only screen and (min-width: 768px) {
+      #ppc-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media only screen and (min-width: 992px) {
+      #ppc-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    i:not(.hover-exception), .ppc-title {
+      transition: color .3s ease-out;
+    }
+
+    i:hover:not(.hover-exception), .ppc-title:hover {
+      color: #0d6efd;
+    }
+
+    #inner-card, #outer-card, .ppc {
+      transition: transform .3s ease-out;
+    }
+
+    #inner-card:hover, #outer-card:hover, .ppc:hover {
+      transform: scale(1.025);
+    }
+  </style>
 </head>
 
-<body>
 
-    <nav>
-        <div id="left-nav">
-            <ul>
-                <li>
-                    <a class="nav-option" href="#">
-                    <img src="Assets/Images/personal-logo.svg" alt="Logo" id="light-logo">
-                    <img src="Assets/Images/personal-logo-dark.svg" alt="Logo" id="dark-logo">
-                    </a>
-                </li>
 
-                <li class="nav-option-li">
-                    <a class="nav-option" id="nav-active" href="#">HOME</a>
-                </li>
+<body class="bg-body-secondary">
 
-                <li class="nav-option-li">
-                    <a class="nav-option" href="My-Project.html" style="font-weight: normal;">MY PROJECT</a>
-                </li>
+  <nav class="navbar rounded-bottom-5 shadow-sm navbar-expand-lg bg-body-tertiary sticky-top px-3 px-lg-5" id="navbar-target">
 
-                <li class="nav-option-li">
-                    <a class="nav-option" href="Testimonials.html" style="font-weight: normal;">TESTIMONIALS</a>
-                </li>
-            </ul>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="./Assets/Images/personal-logo.svg" alt="Bintang Naufal Logo" width="36" height="36" />
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-column align-items-center flex-lg-row">
+
+          <li class="nav-item">
+            <a class="nav-link" href="#scroll-1">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#scroll-2">Projects</a>
+          </li>
+        </ul>
+
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn rounded-pill px-4 btn-outline-secondary mb-4 mb-lg-0" data-bs-toggle="modal" data-bs-target="#send-message">
+            Contact
+          </button>
         </div>
 
-        <div id="right-nav">
-            <button id="theme-switch">
-                <i class="fa-solid fa-moon fa-2xl fa-fw"></i>
-            </button>
+      </div>
+    </div>
+  </nav>
 
-            <a href="Contact-Form.html" id="contact-button-a-hidden">
-                <button type="button">
-                    Contact
-                </button>
+
+
+  <div class="scrollspy" data-bs-spy="scroll" data-bs-target="#navbar-target" data-bs-smooth-scroll="true">
+
+    <div class="container mt-5" style="margin-bottom: 16rem;">
+
+      <div class="card rounded-5 border-0 shadow-sm p-4 mx-auto d-flex flex-lg-row align-items-center gap-5" id="outer-card" style="max-width: 90%;">
+        <div class="card-body">
+
+          <h3 class="card-title" id="scroll-1">Greetings. Feel Free To Explore Everything!</h3>
+          <p class="card-text lh-sm" style="text-align: justify;">My name is Phil. Fancy seeing you here! I hope you're
+            having a good morning or day or
+            evening. Fancy what you see here? Please do not hesitate to reach me out! The contact form button is right
+            down here and also on the navigation menu. Wink wink.
+          </p>
+          <div class="mt-5 d-flex gap-3 justify-content-center justify-content-lg-start flex-column flex-md-row">
+            <button data-bs-toggle="modal" data-bs-target="#send-message" class="btn rounded-pill px-4 btn-primary">Open Form</button>
+            <a href="https://bolderphil.crevado.com/" target="_blank" class="btn rounded-pill px-4 btn-outline-secondary">
+              View Portfolio
+              <i class="fa-solid fa-expand ms-1 hover-exception"></i>
             </a>
+          </div>
 
-            <button id="nav-toggle" onclick="toggleOverlay()">
-                <i class="fa-solid fa-bars-staggered fa-2xl"></i>
-            </button>
+          <div class="d-flex gap-3 mt-5 justify-content-center justify-content-lg-start">
+            <a href="https://www.linkedin.com/in/bintangnaufal/" target="_blank"
+              style="text-decoration: none; color: unset;">
+              <i class="fa-brands fa-linkedin fa-2xl fa-fw" style="font-size: 36px;"></i>
+            </a>
+            <a href="https://www.instagram.com/bolderphil/" target="_blank"
+              style="text-decoration: none; color: unset;">
+              <i class="fa-brands fa-instagram fa-2xl fa-fw" style="font-size: 36px;"></i>
+            </a>
+            <a href="https://www.youtube.com/@bintangnaufal5420/featured" target="_blank"
+              style="text-decoration: none; color: unset;">
+              <i class="fa-brands fa-youtube fa-2xl fa-fw" style="font-size: 36px;"></i>
+            </a>
+            <a href="https://twitter.com/G_I_DLE" target="_blank" style="text-decoration: none; color: unset;">
+              <i class="fa-brands fa-twitter fa-2xl fa-fw" style="font-size: 36px;"></i>
+            </a>
+          </div>
+
         </div>
 
-    </nav>
-
-    <div id="toggle-overlay">
-        <div>
-            <a href="#" class="nav-option active-page" id="margin-top">
-                HOME
-            </a>
-            <a href="My-Project.html" class="nav-option" style="font-weight: normal;">
-                MY PROJECT
-            </a>
-
-            <a href="Testimonials.html" class="nav-option" style="font-weight: normal;">
-                TESTIMONIALS
-            </a>
-            
-            <a href="Contact-Form.html" id="margin-bottom">
-                <button type="button">Contact</button>
-            </a>
+        <div class="card rounded-5 border-0 shadow-sm text-center" style="width: 800px; max-width: fit-content;" id="inner-card">
+          <img src="./Assets/Images/hoodie.jpg" class="card-img-top rounded-top-5 img-fluid" alt="Cool Black Hoodie"
+            style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Bolderphil</h5>
+            <p class="card-text">Fullstack Developer</p>
+          </div>
         </div>
+
+      </div>
     </div>
 
-    <div id="parent-card-container">
+    <!--  -->
 
-        <div id="left-hand">
+    <div class="bg-body container-fluid p-5 rounded-top-5 shadow-sm">
 
-            <div id="first-section">
-                <div>
-                    <h2>Salve, Io sono <span>Bintang</span>. Piacere! 👋🏻</h2>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab nihil voluptas placeat voluptates, vitae recusandae voluptatum id dolor. Optio minus repudiandae rem ad, odit illo velit harum dicta aliquam, eum eius labore alias animi magnam voluptatibus, magni eveniet neque consequatur! Eveniet alias, dolore quisquam molestias omnis corrupti id eos saepe!</p>
-                </div>
+      <div id="scroll-2">
 
-                <div id="CTAs">
-                    <a href="Contact-Form.html">
-                        <button type="button">
-                            Hit Me Up!
-                        </button>
-                    </a>
-                    <a href="http://bolderphil.crevado.com" target="_blank" id="not-button">
-                        <p>View Portfolio</p> <i class="fa-regular fa-eye fa-sm fa-fw"></i>
-                    </a>
-                </div>
+        <div class="d-flex gap-3 justify-content-center align-items-center">
+          <h3 class="my-0 lh-md">Projects</h3>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn rounded-circle btn-outline-secondary btn-sm" data-bs-toggle="modal"
+            data-bs-target="#add-new">
+            <i class="fa-solid fa-plus fa-sm fa-fw hover-exception"></i>
+          </button>
+        </div>
+
+        <div class="container" id="ppc-container">
+
+          <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16em;">
+            <img src="./Assets/Images/mobile-app.jpg" class="card-img-top rounded-top-4" alt="Mobile App">
+            <div class="card-body">
+              <a href="Project-Detail.html" class="card-title ppc-title" style="text-decoration: none;">
+                <h6>Mobile App - 2023</h6>
+              </a>
+              <p class="text-muted" style="font-size: small; line-height: .5;">Duration: 4 months</p>
+              <p class="card-text lh-sm"
+                style="font-size: small; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">
+                Some quick example text to build on the card title and make up the bulk of the card's content. Some
+                quick
+                example text to build on the card title and make up the bulk of the card's content.</p>
+              <div class="d-flex gap-2 my-4">
+                <i class="fa-brands fa-square-js fa-lg fa-fw"></i>
+                <i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
+                <i class="fa-brands fa-golang fa-lg fa-fw"></i>
+                <i class="fa-brands fa-react fa-lg fa-fw"></i>
+              </div>
+              <div class="d-flex flex-row gap-3">
+                <button class="btn rounded-pill btn-outline-secondary btn-sm w-50">Edit</button>
+                <button class="btn rounded-pill btn-outline-danger btn-sm w-50">Delete</button>
+              </div>
             </div>
+          </div>
 
-            <div id="second-section">
-                <a href="https://www.linkedin.com/in/bintangnaufal/" target="_blank">
-                    <i class="fa-brands fa-linkedin-in fa-2xl fa-fw"></i>
-                </a>
-                <a href="https://www.instagram.com/bolderphil/" target="_blank">
-                    <i class="fa-brands fa-instagram fa-2xl fa-fw" id="instagram"></i>
-                </a>
-                <a href="https://www.facebook.com/" target="_blank">
-                    <i class="fa-brands fa-facebook-f fa-2xl fa-fw"></i>
-                </a>
-                <a href="https://twitter.com/" target="_blank">
-                    <i class="fa-brands fa-twitter fa-2xl fa-fw"></i>
-                </a>
+          <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16rem;">
+            <img src="./Assets/Images/compdesk.jpg" class="card-img-top rounded-top-4" alt="Mobile App">
+            <div class="card-body">
+              <a href="#" class="card-title ppc-title" style="text-decoration: none;">
+                <h6>Web App - 2022</h6>
+              </a>
+              <p class="text-muted" style="font-size: small; line-height: .5;">Duration: 2 months</p>
+              <p class="card-text lh-sm"
+                style="font-size: small; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">
+                Some quick example text to build on the card title and make up the bulk of the card's content. Some
+                quick
+                example text to build on the card title and make up the bulk of the card's content.</p>
+              <div class="d-flex gap-2 my-4">
+                <i class="fa-brands fa-square-js fa-lg fa-fw"></i>
+                <i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
+                <i class="fa-brands fa-golang fa-lg fa-fw"></i>
+                <i class="fa-brands fa-react fa-lg fa-fw"></i>
+              </div>
+              <div class="d-flex flex-row gap-3">
+                <button class="btn rounded-pill btn-outline-secondary btn-sm w-50">Edit</button>
+                <button class="btn rounded-pill btn-outline-danger btn-sm w-50">Delete</button>
+              </div>
             </div>
+          </div>
+
+          <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16rem;">
+            <img src="./Assets/Images/compdesk2.jpg" class="card-img-top rounded-top-4" alt="Mobile App">
+            <div class="card-body">
+              <a href="#" class="card-title ppc-title" style="text-decoration: none;">
+                <h6>Desktop App - 2023</h6>
+              </a>
+              <p class="text-muted" style="font-size: small; line-height: .5;">Duration: 3 years</p>
+              <p class="card-text lh-sm"
+                style="font-size: small; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">
+                Some quick example text to build on the card title and make up the bulk of the card's content. Some
+                quick
+                example text to build on the card title and make up the bulk of the card's content.</p>
+              <div class="d-flex gap-2 my-4">
+                <i class="fa-brands fa-square-js fa-lg fa-fw"></i>
+                <i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
+                <i class="fa-brands fa-golang fa-lg fa-fw"></i>
+                <i class="fa-brands fa-react fa-lg fa-fw"></i>
+              </div>
+              <div class="d-flex flex-row gap-3">
+                <button class="btn rounded-pill btn-outline-secondary btn-sm w-50">Edit</button>
+                <button class="btn rounded-pill btn-outline-danger btn-sm w-50">Delete</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16rem;">
+            <img src="./Assets/Images/server.jpg" class="card-img-top rounded-top-4" alt="Mobile App">
+            <div class="card-body">
+              <a href="#" class="card-title ppc-title" style="text-decoration: none;">
+                <h6>Sever Building - 2022</h6>
+              </a>
+              <p class="text-muted" style="font-size: small; line-height: .5;">Duration: 1 Year</p>
+              <p class="card-text lh-sm"
+                style="font-size: small; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">
+                Some quick example text to build on the card title and make up the bulk of the card's content. Some
+                quick
+                example text to build on the card title and make up the bulk of the card's content.</p>
+              <div class="d-flex gap-2 my-4">
+                <i class="fa-brands fa-square-js fa-lg fa-fw"></i>
+                <i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
+                <i class="fa-brands fa-golang fa-lg fa-fw"></i>
+                <i class="fa-brands fa-react fa-lg fa-fw"></i>
+              </div>
+              <div class="d-flex flex-row gap-3">
+                <button class="btn rounded-pill btn-outline-secondary btn-sm w-50">Edit</button>
+                <button class="btn rounded-pill btn-outline-danger btn-sm w-50">Delete</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16rem;">
+            <img src="./Assets/Images/fish.jpg" class="card-img-top rounded-top-4" alt="Mobile App">
+            <div class="card-body">
+              <a href="#" class="card-title ppc-title" style="text-decoration: none;">
+                <h6>Pecel Lele</h6>
+              </a>
+              <p class="text-muted" style="font-size: small; line-height: .5;">Duration: Less than a day</p>
+              <p class="card-text lh-sm"
+                style="font-size: small; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">
+                Some quick example text to build on the card title and make up the bulk of the card's content. Some
+                quick
+                example text to build on the card title and make up the bulk of the card's content.</p>
+              <div class="d-flex gap-2 my-4">
+                <i class="fa-brands fa-square-js fa-lg fa-fw"></i>
+                <i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
+                <i class="fa-brands fa-golang fa-lg fa-fw"></i>
+                <i class="fa-brands fa-react fa-lg fa-fw"></i>
+              </div>
+              <div class="d-flex flex-row gap-3">
+                <button class="btn rounded-pill btn-outline-secondary btn-sm w-50">Edit</button>
+                <button class="btn rounded-pill btn-outline-danger btn-sm w-50">Delete</button>
+              </div>
+
+            </div>
+          </div>
 
         </div>
 
-        <div id="right-hand">
-            <div id="inner-card">
-                <img src="Assets/Images/hoodie.jpg" alt="Black hoodie with green background">
-                <h3>Hoodie is Good</h3>
-                <p>This hoodie is killing it.</p>
-            </div>
-        </div>
-
+      </div>
     </div>
 
-    <script src="JS/Mobile-Nav-Toggle.js"></script>
-    
+
+    <!-- New Project Modal -->
+    <div class="modal fade" id="add-new" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+      <div class="modal-dialog modal-dialog-scrollable">
+
+        <div class="modal-content rounded-5">
+
+          <div class="modal-header bg-body-tertiary">
+            <h4 class="modal-title" id="staticBackdropLabel">New Project</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <form onsubmit="post_project(event)">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control rounded-4" id="project-title" placeholder="Project Title" required autocomplete="off">
+                <label for="project-title">Project Title</label>
+              </div>
+
+              <div class="mb-3 d-lg-flex flex-row justify-content-between gap-2">
+                <div class="form-floating w-100 mb-3 mb-lg-0">
+                  <input type="date" class="form-control rounded-4" id="start-date" placeholder="Start Date" required>
+                  <label for="start-date">Start Date</label>
+                </div>
+                <div class="form-floating w-100">
+                  <input type="date" class="form-control rounded-4" id="finish-date" placeholder="Finish Date" required>
+                  <label for="finish-date">Finish Date</label>
+                </div>
+              </div>
+
+              <div class="form-floating mb-3">
+                <textarea class="form-control rounded-4" id="description" placeholder="Description"
+                  style="height: 160px; resize: none;" required autocomplete="off"></textarea>
+                <label for="description">Description</label>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Technologies</label>
+                <div class="row mx-auto">
+                  <div class="form-check form-switch col">
+                    <input class="form-check-input" type="checkbox" role="switch" id="js-check">
+                    <label class="form-check-label" for="js-check">Javascript</label>
+                  </div>
+                  <div class="form-check form-switch col">
+                    <input class="form-check-input" type="checkbox" role="switch" id="bs-check">
+                    <label class="form-check-label" for="bs-check">Bootstrap</label>
+                  </div>
+                </div>
+                <div class="row mx-auto">
+                  <div class="form-check form-switch col">
+                    <input class="form-check-input" type="checkbox" role="switch" id="go-check">
+                    <label class="form-check-label" for="go-check">Go</label>
+                  </div>
+                  <div class="form-check form-switch col">
+                    <input class="form-check-input" type="checkbox" role="switch" id="react-check">
+                    <label class="form-check-label" for="react-check">React</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label" for="upload-image">Project Mockup</label>
+                <div class="input-group">
+                  <input type="file" class="form-control rounded-start-pill" id="upload-image" accept="image/png, image/jpeg, image/gif" required>
+                  <label class="input-group-text rounded-end-pill" for="upload-image"><i class="fa-solid fa-paperclip"></i></label>
+                </div>
+              </div>
+
+              <hr>
+              
+              <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2">Post</button>
+              <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3" value="Clear Form"></input>
+
+            </form>
+          </div>
+
+          <div class="modal-footer text-body-secondary bg-body-tertiary d-flex justify-content-center">
+            *All fields are mandatory
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="send-message" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+      <div class="modal-dialog modal-dialog-scrollable">
+
+        <div class="modal-content rounded-5">
+
+          <div class="modal-header bg-body-tertiary">
+            <h4 class="modal-title" id="staticBackdropLabel">Send a Message</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <form>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control rounded-4" id="nickname" placeholder="Your Nickname" autocomplete="off">
+                <label for="nickname">Your Nickname</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control rounded-4" id="email" placeholder="Email Address" autocomplete="off">
+                <label for="email">Email Address</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control rounded-4" id="phone" placeholder="Phone Number" autocomplete="off">
+                <label for="phone">Phone Number</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <select class="form-select rounded-4" id="select-subject">
+                    <option value="Recruitment">Recruitment</option>
+                    <option value="Suggestion">Suggestion</option>
+                    <option value="Let's grab coffees!" selected>Let's Grab Coffees!</option>
+                </select>
+                <label for="select-subject">Select Subject</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <textarea class="form-control rounded-4" id="message" placeholder="Your Message" style="height: 120px; resize: none;" autocomplete="off"></textarea>
+                <label for="message">Your Message</label>
+              </div>
+
+              <hr>
+              
+              <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2" onclick="send_message()">Send</button>
+              <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3" value="Clear Form"></input>
+
+            </form>
+          </div>
+
+          <div class="modal-footer text-body-secondary bg-body-tertiary d-flex justify-content-center">
+            *Your preferred email app will open after you click send
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="JS/Project-Form.js"></script>
+  <script src="JS/Contact-Form.js"></script>
 </body>
+
 </html>

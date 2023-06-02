@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="icon" href="Assets/Images/favicon.ico" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/81634d0f93.js" crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://api.fontshare.com/v2/css?f[]=switzer@101,600,701,800,501,601,900,100,700,901,400,201,401,200,300,301,801,500&display=swap');
+
+        * {
+            font-family: 'Switzer', sans-serif;
+        }
+
+        #contact-form-card {
+            width: 100%;
+        }
+
+        @media only screen and (min-width: 768px) {
+            #contact-form-card {
+                width: 75%;
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            #contact-form-card {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-body-secondary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top px-3 px-lg-5" id="navbar-target">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./Assets/Images/personal-logo.svg" alt="Bintang Naufal Logo" width="36" height="36" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-column align-items-center flex-lg-row">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html#scrollspyHeading2">Projects</a>
+                    </li>
+                </ul>
+                <a class="btn btn-outline-secondary active mb-4 mb-lg-0 d-flex justify-content-center"
+                    aria-current="page" role="button" href="#">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+
+        <div class="card mx-auto" id="contact-form-card">
+            <div class="card-header text-center">
+                Please fill out these forms
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="nickname" placeholder="Your Nickname">
+                        <label for="nickname">Your Nickname</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" placeholder="Email Address">
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="phone" placeholder="Phone Number">
+                        <label for="phone">Phone Number</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="select-subject">
+                            <option value="Recruitment">Recruitment</option>
+                            <option value="Suggestion">Suggestion</option>
+                            <option value="Let's grab coffees!" selected>Let's Grab Coffees!</option>
+                        </select>
+                        <label for="select-subject">Select Subject</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="message" placeholder="Your Message"
+                            style="height: 120px; resize: none;"></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                </form>
+                <button class="btn btn-primary w-100">Send</button>
+            </div>
+            <div class="card-footer text-body-secondary text-center">
+                Your preferred email app will open after you click send
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

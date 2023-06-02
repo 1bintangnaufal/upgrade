@@ -1,0 +1,87 @@
+/* Dark mode components */
+
+.dark-mode {
+    --background-color: #202220;
+    --primary-color: #0f100f;
+    --secondary-color: #eaf3ea;
+    --tertiary-color: #acee86;
+    --shadow-color-sharp: none;
+    --shadow-color-soft: none;
+    --subtle-text-color: #bdbdbd;
+
+    & #dark-logo {
+        display: block;
+    }
+
+    background: linear-gradient(45deg, transparent 49%, #0f100f 49% 51%, transparent 51%) , linear-gradient(-45deg, transparent 49%, #0f100f 49% 51%, transparent 51%);
+    background-size: 3em 3em;
+    background-color: var(--background-color);
+    opacity: 1;
+
+    & p {
+        font-weight: 301 !important;
+    }
+
+    & #light-logo {
+        display: none;
+    }
+
+    & ::placeholder {
+        color: var(--subtle-text-color);
+    }
+
+    & .mandatory-field::after {
+        color: #f45f5f !important;
+    }
+
+    & .check-label::before {
+        background-color: var(--background-color) !important;
+    }
+
+    & input, textarea, select {
+        background-color: var(--background-color) !important;
+    }
+
+    & input[type="date"] {
+        color-scheme: dark !important;
+    }
+
+    & input[type="checkbox"]:checked + .check-label::before {
+        background-color: var(--secondary-color) !important;
+    }
+
+    & #image-input-wrap label {
+        background-color: var(--background-color) !important;
+    }
+
+    & #image-input-wrap label p {
+        background-color: var(--secondary-color) !important;
+        color: #1e211e;
+        font-weight: normal !important;
+    }
+
+    & #image-input-wrap label p:hover {
+        color: #34ab34 !important;
+    }
+
+    & .project-preview-card {
+        background-color: var(--background-color) !important;
+    }
+
+    & #inner-card {
+        background-color: var(--background-color);
+    }
+
+    & .card-buttons .delete-button:hover {
+        background-color: #f45f5f !important;
+        color: var(--secondary-color) !important;
+    }
+}
+
+#dark-logo {
+    display: none;
+}
+
+p, h1, h2, h3, h4, h5, h6, label, input, textarea, select {
+    color: var(--secondary-color)
+}

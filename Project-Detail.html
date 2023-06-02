@@ -1,148 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pillboard App</title>
-    <link rel="icon" href="Assets/Images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="Style/Style.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="icon" href="Assets/Images/favicon.ico" type="image/x-icon" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
     <script src="https://kit.fontawesome.com/81634d0f93.js" crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://api.fontshare.com/v2/css?f[]=switzer@101,600,701,800,501,601,900,100,700,901,400,201,401,200,300,301,801,500&display=swap');
+
+        * {
+            font-family: 'Switzer', sans-serif;
+        }
+
+        #navbar-target {
+            z-index: 2;
+        }
+
+        #send-message {
+            z-index: 9999;
+        }
+
+        #tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: .25rem;
+        }
+
+        #tab-height {
+            height: fit-content;
+            z-index: 1;
+            transition: transform .3s ease-out;
+        }
+
+        @media only screen and (min-width: 992px) {
+            #tab-height {
+                height: 26rem;
+            }
+        }
+
+        #details-content p {
+            text-align: justify;
+            text-indent: 2rem;
+        }
+
+        i {
+            transition: color .3s ease-out;
+        }
+
+        i:hover {
+            color: #0d6efd;
+        }
+
+        .o-mockup {
+            transition: transform .3s ease-out;
+        }
+        #tab-height:hover, .o-mockup:hover {
+            transform: scale(1.025);
+        }
+    </style>
 </head>
 
-<body id="project-detail-body">
-    
-    <nav>
-        <div id="left-nav">
-            <ul>
-                <li>
-                    <a class="nav-option" href="Index.html">
-                    <img src="Assets/Images/personal-logo.svg" alt="Logo" id="light-logo">
-                    <img src="Assets/Images/personal-logo-dark.svg" alt="Logo" id="dark-logo">
-                    </a>
-                </li>
 
-                <li class="nav-option-li">
-                    <a class="nav-option" href="Index.html" style="font-weight: normal;">HOME</a>
-                </li>
 
-                <li class="nav-option-li">
-                    <a class="nav-option" id="nav-active" href="My-Project.html">MY PROJECT</a>
-                </li>
+<body class="bg-body-secondary">
 
-                <li class="nav-option-li">
-                    <a class="nav-option" href="Testimonials.html" style="font-weight: normal;">TESTIMONIALS</a>
-                </li>
-            </ul>
-        </div>
+    <nav class="navbar rounded-bottom-5 navbar-expand-lg bg-body-tertiary sticky-top px-3 px-lg-5" id="navbar-target">
 
-        <div id="right-nav">
-            <button id="theme-switch">
-                <i class="fa-solid fa-moon fa-2xl fa-fw"></i>
-            </button>
-
-            <a href="Contact-Form.html" id="contact-button-a-hidden">
-                <button type="button">
-                    Contact
-                </button>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./Assets/Images/personal-logo.svg" alt="Bintang Naufal Logo" width="36" height="36" />
             </a>
 
-            <button id="nav-toggle" onclick="toggleOverlay()">
-                <i class="fa-solid fa-bars-staggered fa-2xl"></i>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-        </div>
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-column align-items-center flex-lg-row">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Index.html#scroll-2">Projects</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn rounded-pill px-4 btn-outline-secondary mb-4 mb-lg-0" data-bs-toggle="modal"
+                        data-bs-target="#send-message">
+                        Contact
+                    </button>
+                </div>
+
+            </div>
+        </div>
     </nav>
 
-    <div id="toggle-overlay">
-        <div>
-            <a href="Index.html" class="nav-option" id="margin-top" style="font-weight: normal;">
-                HOME
-            </a>
-            <a href="My-Project.html" class="nav-option active-page">
-                MY PROJECT
-            </a>
 
-            <a href="Testimonials.html" class="nav-option" style="font-weight: normal;">
-                TESTIMONIALS
-            </a>
-            
-            <a href="Contact-Form.html" id="margin-bottom">
-                <button type="button">Contact</button>
-            </a>
+
+    <div class="container my-5 d-flex justify-content-center">
+
+        <div class="card rounded-5 border-0 shadow-sm" id="tab-height" style="width: 45rem; overflow-y: auto;">
+            <div class="card-header sticky-top bg-body-tertiary border-0">
+                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active rounded-top-4 border-0 text-body" id="overview-tab" data-bs-toggle="tab"
+                            data-bs-target="#overview-content" type="button" role="tab" aria-controls="overview-content"
+                            aria-selected="true">Overview</button>
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="nav-link rounded-top-4 border-0 text-body" id="details-tab" data-bs-toggle="tab" data-bs-target="#details-content"
+                            type="button" role="tab" aria-controls="details-content">Details</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card-body p-4 tab-content">
+
+                <div class="tab-pane fade show active" id="overview-content" role="tab-panel"
+                    aria-labelledby="overview-tab" tabindex="0">
+
+                    <h5 class="card-title text-center mb-4">Mobile App - 2023</h5>
+
+                    <div class="d-flex flex-column flex-md-row justify-content-around align-items-center gap-4 gap-lg-0">
+                        <div>
+                            <img src="./Assets/Images/mobile-app.jpg" class="img-fluid rounded-4 o-mockup"
+                                style="width: 24rem;">
+                        </div>
+
+                        <div class="d-flex flex-column align-self-start align-self-md-center">
+                            <div class="d-flex flex-column mb-4">
+                                <h6>Duration</h6>
+                                <div class="d-flex flex-row align-items-center gap-1 mb-2">
+                                    <i class="fa-solid fa-calendar-days fa-lg fa-fw"></i>
+                                    <p class="m-0">Jan 17 2023 - May 21 2023</p>
+                                </div>
+
+                                <div class="d-flex flex-row align-items-center gap-1">
+                                    <i class="fa-solid fa-clock-rotate-left fa-lg fa-fw"></i>
+                                    <p class="m-0">4 months</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-column mb-4">
+                                <h6>Technologies</h6>
+
+                                <div id="tech-grid">
+                                    <div class="d-flex flex-row align-items-center gap-1">
+                                        <i class="fa-brands fa-square-js fa-lg fa-fw"></i>
+                                        <p class="m-0">Javascript</p>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center gap-1">
+                                        <i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
+                                        <p class="m-0">Bootstrap</p>
+                                    </div>
+
+
+                                    <div class="d-flex flex-row align-items-center gap-1">
+                                        <i class="fa-brands fa-golang fa-lg fa-fw"></i>
+                                        <p class="m-0">Go</p>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center gap-1">
+                                        <i class="fa-brands fa-react fa-lg fa-fw"></i>
+                                        <p class="m-0">React</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="details-content" role="tab-panel" aria-labelledby="details-tab"
+                    tabindex="0">
+
+                    <h5 class="card-title text-center mb-4">Mobile App - 2023</h5>
+
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit aliquid corporis laudantium
+                        voluptate quibusdam, illo vitae. Culpa nam numquam reiciendis aliquam. Provident at cupiditate,
+                        commodi deserunt corrupti in.</p>
+                    <p>Quasi, iusto autem voluptas, facilis quidem aliquid sed harum provident iure nobis eaque sint
+                        accusantium excepturi consequatur, amet totam magni blanditiis. Voluptatibus natus placeat,
+                        maiores voluptates distinctio quia. Saepe porro maxime iste maiores voluptatem deserunt alias,
+                        debitis dolore odit eaque. Cupiditate architecto eaque vero debitis velit unde, cum harum
+                        consequatur iste. Neque molestias ducimus temporibus ex labore tempore magni, provident maiores?
+                        Obcaecati, placeat aliquid, officiis nulla voluptatem asperiores, ipsa unde a vel magni facere
+                        inventore necessitatibus.</p>
+                    <p>Laborum repudiandae labore iusto molestiae harum atque aperiam sapiente! Fugiat voluptates, ex,
+                        facere velit quae animi delectus magni ullam ipsum hic laudantium numquam doloribus esse nihil
+                        nisi. Magnam, dicta? Quidem molestias corporis mollitia architecto est quaerat, nulla quos eos
+                        soluta maiores explicabo aspernatur animi molestiae cupiditate itaque ab, dignissimos veritatis
+                        ullam libero, sunt nobis reprehenderit.</p>
+                    <p>Earum aliquam, atque dignissimos totam tempora neque. Pariatur eaque accusamus asperiores, ea
+                        doloremque quaerat dolorum sapiente ipsa suscipit voluptatum blanditiis facere deleniti? Odit,
+                        dicta. Possimus, in soluta numquam consequuntur aspernatur voluptatibus eos aut, at, sapiente
+                        explicabo dolore facilis porro et odio?
+                    </p>
+                </div>
+
+            </div>
         </div>
     </div>
-    <!-- ------------------------------------------------------------------------------------------------- -->
 
-    <h2 class="page-title">Pillboard App - 2023</h2>
+    <!-- Contact Modal -->
+    <div class="modal fade" id="send-message" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
-    <main class="wrap-up-the-pd">
-        <section class="pd-top">
-            <section class="pd-image">
-            <img src="Assets/Images/mobile-app.jpg">
-            </section>
+        <div class="modal-dialog modal-dialog-scrollable">
 
-            <section class="pd-extra-info">
-                <div class="date-and-duration">
-                    <h4>Duration</h4>
+            <div class="modal-content rounded-5">
 
-                    <div>
-                        <i class="fa-solid fa-calendar-days fa-xl fa-fw"></i>
-                        <span>Apr 17 2022 - Jan 10 2023</span>
-                    </div>
-                    
-                    <div>
-                        <i class="fa-solid fa-clock-rotate-left fa-xl fa-fw"></i>
-                        <span>8 months</span>
-                    </div>    
+                <div class="modal-header bg-body-tertiary">
+                    <h4 class="modal-title" id="staticBackdropLabel">Send a Message</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <div class="wrap-up-the-tech">
-                    <h4>Technologies Used</h4>
-
-                    <div class="tech-grid">
-                        <div>
-                            <i class="fa-brands fa-square-js fa-xl fa-fw"></i>
-                            <span>Javascript</span>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-4" id="nickname" placeholder="Your Nickname"
+                                autocomplete="off">
+                            <label for="nickname">Your Nickname</label>
                         </div>
 
-                        <div>
-                            <i class="fa-brands fa-bootstrap fa-xl fa-fw"></i>
-                            <span>Bootstrap</span>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-4" id="email" placeholder="Email Address"
+                                autocomplete="off">
+                            <label for="email">Email Address</label>
                         </div>
 
-                        <div>
-                            <i class="fa-brands fa-golang fa-xl fa-fw"></i>
-                            <span>Go</span>
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control rounded-4" id="phone" placeholder="Phone Number"
+                                autocomplete="off">
+                            <label for="phone">Phone Number</label>
                         </div>
 
-                        <div>
-                            <i class="fa-brands fa-react fa-xl fa-fw"></i>
-                            <span>React</span>
+                        <div class="form-floating mb-3">
+                            <select class="form-select rounded-4" id="select-subject">
+                                <option value="Recruitment">Recruitment</option>
+                                <option value="Suggestion">Suggestion</option>
+                                <option value="Let's grab coffees!" selected>Let's Grab Coffees!</option>
+                            </select>
+                            <label for="select-subject">Select Subject</label>
                         </div>
-                    </div>
+
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control rounded-4" id="message" placeholder="Your Message"
+                                style="height: 120px; resize: none;" autocomplete="off"></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+
+                        <hr>
+
+                        <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2" onclick="send_message()">Send</button>
+                        <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3" value="Clear Form"></input>
+
+                    </form>
                 </div>
-            </section>
-        </section>
 
-        <section class="pd-paragraph">
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, magni earum! Adipisci unde quam soluta ratione, ex laboriosam, mollitia voluptatum non voluptas ullam, culpa alias? Sunt nulla dicta commodi vitae assumenda quas tempore beatae eligendi. Aliquam molestiae, praesentium, voluptatibus ab at, magnam dolor architecto dicta ex minima voluptatum!
-                </p>
+                <div class="modal-footer text-body-secondary bg-body-tertiary d-flex justify-content-center">
+                    *Your preferred email app will open after you click send
+                </div>
 
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium labore suscipit nulla nobis, animi eaque veritatis inventore ullam, quas consequuntur aut distinctio ipsum quae eius et earum, quo reprehenderit vero? Incidunt sequi velit eaque minus nesciunt eum quis iure accusantium, molestiae, corrupti magni cupiditate explicabo cumque distinctio illo, officiis facere est ut. Blanditiis illo at id laborum deserunt excepturi nihil quam deleniti eius, ab iste dolore nostrum corporis odit. Iure, suscipit non!
-                </p>
-
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis, laborum ipsa. Beatae cupiditate odit repudiandae iste commodi, corrupti hic nihil, nisi veritatis nemo alias cumque laborum optio, ea corporis magni. Similique minus ut id blanditiis ex consectetur veniam deleniti dolorem soluta. Expedita in doloribus aspernatur, voluptas corporis, dolores recusandae distinctio sunt a, cumque veritatis aperiam exercitationem ipsum placeat rem vel?
-                </p>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
 
-    <script src="JS/Mobile-Nav-Toggle.js"></script>
-    
+    </div>
+
+    <script src="JS/Contact-Form.js"></script>
 </body>
+
 </html>
