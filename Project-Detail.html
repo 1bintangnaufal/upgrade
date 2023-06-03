@@ -62,10 +62,10 @@
             color: #0d6efd;
         }
 
-        .o-mockup {
+        .o-mockup, #nav-logo {
             transition: transform .3s ease-out;
         }
-        #tab-height:hover, .o-mockup:hover {
+        #tab-height:hover, .o-mockup:hover, #nav-logo:hover {
             transform: scale(1.025);
         }
     </style>
@@ -78,8 +78,8 @@
     <nav class="navbar rounded-bottom-5 navbar-expand-lg bg-body-tertiary sticky-top px-3 px-lg-5" id="navbar-target">
 
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="./Assets/Images/personal-logo.svg" alt="Bintang Naufal Logo" width="36" height="36" />
+            <a class="navbar-brand" href="Index.html">
+                <img src="./Assets/Images/personal-logo.svg" alt="Bintang Naufal Logo" width="36" height="36" id="nav-logo"/>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -144,9 +144,9 @@
                                 style="width: 24rem;">
                         </div>
 
-                        <div class="d-flex flex-column align-self-start align-self-md-center">
+                        <div class="d-flex flex-column align-self-center align-self-md-start mt-3 mt-md-0">
                             <div class="d-flex flex-column mb-4">
-                                <h6>Duration</h6>
+                                <h6 class="badge bg-secondary rounded-pill p-2 fw-normal fs-6">Duration</h6>
                                 <div class="d-flex flex-row align-items-center gap-1 mb-2">
                                     <i class="fa-solid fa-calendar-days fa-lg fa-fw"></i>
                                     <p class="m-0">Jan 17 2023 - May 21 2023</p>
@@ -159,7 +159,7 @@
                             </div>
 
                             <div class="d-flex flex-column mb-4">
-                                <h6>Technologies</h6>
+                                <h6 class="badge bg-primary rounded-pill p-2 fw-normal fs-6">Technologies</h6>
 
                                 <div id="tech-grid">
                                     <div class="d-flex flex-row align-items-center gap-1">

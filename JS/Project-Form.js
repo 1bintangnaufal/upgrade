@@ -20,7 +20,7 @@ function post_project(event) {
     const react_i = '<i class="fa-brands fa-react fa-lg fa-fw"></i>';
 
     let form_check_input = document.querySelectorAll(".form-check-input:checked");
-    if(form_check_input.length === 0) {
+    if (form_check_input.length === 0) {
         return alert("Select at least one technology used.");
     };
 
@@ -55,11 +55,11 @@ function post_project(event) {
 
     render_ppc();
 
-    
+    close_modal();
 };
 
 const textarea = document.getElementById("description");
-textarea.addEventListener("input", function() {
+textarea.addEventListener("input", function () {
     const min_char = 80;
     const input_length = this.value.length;
 
@@ -78,15 +78,15 @@ function render_ppc() {
         const finish_date = new Date(project_data[index].finish_date);
         const remainder = finish_date - start_date;
         const time_units = [
-            {value: 365.25 * 24 * 60 * 60 * 1000, label: "year(s)"},
-            {value: 30 * 24 * 60 * 60 * 1000, label: "month(s)"},
-            {value: 7 * 24 * 60 * 60 * 1000, label: "week(s)"},
-            {value: 24 * 60 * 60 * 1000, label: "day(s)"},
+            { value: 365.25 * 24 * 60 * 60 * 1000, label: "year(s)" },
+            { value: 30 * 24 * 60 * 60 * 1000, label: "month(s)" },
+            { value: 7 * 24 * 60 * 60 * 1000, label: "week(s)" },
+            { value: 24 * 60 * 60 * 1000, label: "day(s)" },
         ];
 
         let result = "";
         for (let calculation = 0; calculation < time_units.length; calculation++) {
-            const {value, label} = time_units[calculation];
+            const { value, label } = time_units[calculation];
             const calculate = Math.floor(remainder / value);
             if (calculate > 0) {
                 result = `${calculate} ${label}`;
@@ -99,10 +99,10 @@ function render_ppc() {
         };
 
         document.getElementById("ppc-container").innerHTML += `
-        <div class="card" style="width: 16em;">
-            <img src="${project_data[index].upload_image}" class="card-img-top" alt="Mobile App">
-            <div class="card-body">
-              <a href="#" class="card-title" style="text-decoration: none;">
+        <div class="rounded-4 border-0 shadow-sm ppc" style="width: 16em;">
+            <img src="${project_data[index].upload_image}" class="card-img-top rounded-top-4" alt="Mobile App" style="height: 10.25em; object-fit: cover;">
+            <div class="card-body p-3">
+              <a href="#" class="card-title ppc-title" style="text-decoration: none;">
                 <h6>${project_data[index].project_title}</h6>
               </a>
               <p class="text-muted" style="font-size: small; line-height: .5;">${result}</p>
@@ -116,13 +116,20 @@ function render_ppc() {
                 ${project_data[index].react_check}
               </div>
               <div class="d-flex flex-row gap-3">
-                <button class="btn btn-outline-secondary btn-sm w-50">Edit</button>
-                <button class="btn btn-outline-danger btn-sm w-50">Delete</button>
+                <button class="btn rounded-pill btn-outline-secondary btn-sm w-50">Edit</button>
+                <button class="btn rounded-pill btn-outline-danger btn-sm w-50">Delete</button>
               </div>
             </div>
           </div>
         `;
     };
 
-    document.getElementById("ppc-container").scrollIntoView({behavior: 'smooth'});
+    document.getElementById("ppc-container").scrollIntoView({ behavior: 'smooth' });
+};
+
+function close_modal() {
+    const project_form_modal = document.getElementById("add-new");
+
+    const bootstrap_modal = bootstrap.Modal.getInstance(project_form_modal);
+    bootstrap_modal.hide();
 };

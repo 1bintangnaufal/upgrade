@@ -52,11 +52,11 @@
       color: #0d6efd;
     }
 
-    #inner-card, #outer-card, .ppc {
+    #inner-card, #outer-card, .ppc, #nav-logo {
       transition: transform .3s ease-out;
     }
 
-    #inner-card:hover, #outer-card:hover, .ppc:hover {
+    #inner-card:hover, #outer-card:hover, .ppc:hover, #nav-logo:hover {
       transform: scale(1.025);
     }
   </style>
@@ -70,7 +70,7 @@
 
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="./Assets/Images/personal-logo.svg" alt="Bintang Naufal Logo" width="36" height="36" />
+        <img src="./Assets/Images/personal-logo.svg" alt="Bintang Naufal Logo" width="36" height="36" id="nav-logo"/>
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -174,7 +174,7 @@
         <div class="container" id="ppc-container">
 
           <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16em;">
-            <img src="./Assets/Images/mobile-app.jpg" class="card-img-top rounded-top-4" alt="Mobile App">
+            <img src="./Assets/Images/mobile-app.jpg" class="card-img-top rounded-top-4" alt="Mobile App" style="height: 10.25em; object-fit: cover;">
             <div class="card-body">
               <a href="Project-Detail.html" class="card-title ppc-title" style="text-decoration: none;">
                 <h6>Mobile App - 2023</h6>
@@ -199,7 +199,7 @@
           </div>
 
           <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16rem;">
-            <img src="./Assets/Images/compdesk.jpg" class="card-img-top rounded-top-4" alt="Mobile App">
+            <img src="./Assets/Images/compdesk.jpg" class="card-img-top rounded-top-4" alt="Mobile App" style="height: 10.25em; object-fit: cover;">
             <div class="card-body">
               <a href="#" class="card-title ppc-title" style="text-decoration: none;">
                 <h6>Web App - 2022</h6>
@@ -224,7 +224,7 @@
           </div>
 
           <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16rem;">
-            <img src="./Assets/Images/compdesk2.jpg" class="card-img-top rounded-top-4" alt="Mobile App">
+            <img src="./Assets/Images/compdesk2.jpg" class="card-img-top rounded-top-4" alt="Mobile App" style="height: 10.25em; object-fit: cover;">
             <div class="card-body">
               <a href="#" class="card-title ppc-title" style="text-decoration: none;">
                 <h6>Desktop App - 2023</h6>
@@ -249,7 +249,7 @@
           </div>
 
           <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16rem;">
-            <img src="./Assets/Images/server.jpg" class="card-img-top rounded-top-4" alt="Mobile App">
+            <img src="./Assets/Images/server.jpg" class="card-img-top rounded-top-4" alt="Mobile App" style="height: 10.25em; object-fit: cover;">
             <div class="card-body">
               <a href="#" class="card-title ppc-title" style="text-decoration: none;">
                 <h6>Sever Building - 2022</h6>
@@ -274,7 +274,7 @@
           </div>
 
           <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16rem;">
-            <img src="./Assets/Images/fish.jpg" class="card-img-top rounded-top-4" alt="Mobile App">
+            <img src="./Assets/Images/fish.jpg" class="card-img-top rounded-top-4" alt="Mobile App" style="height: 10.25em; object-fit: cover;">
             <div class="card-body">
               <a href="#" class="card-title ppc-title" style="text-decoration: none;">
                 <h6>Pecel Lele</h6>
@@ -376,7 +376,7 @@
 
               <hr>
               
-              <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2">Post</button>
+              <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2" id="post-button" onclick="close_modal()">Post</button>
               <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3" value="Clear Form"></input>
 
             </form>
