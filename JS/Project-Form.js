@@ -4,9 +4,17 @@ function post_project(event) {
     event.preventDefault();
 
     let project_title = document.getElementById("project-title").value;
+    if (project_title.length > 30) {
+        return alert("Maximum Characters For Project Title Exceeds 30.")
+    };
+
     let start_date = document.getElementById("start-date").value;
     let finish_date = document.getElementById("finish-date").value;
     let description = document.getElementById("description").value;
+    if(description.length < 80) {
+        return alert("Minimum Characters For Project Description (80) Not Fullfilled")
+    };
+
     let upload_image = document.getElementById("upload-image").files;
 
     let today = new Date().toLocaleDateString().split("/").join("-");
@@ -50,6 +58,10 @@ function post_project(event) {
         upload_image,
     };
 
+    const get_toast = document.getElementById("toast-container");
+    const show_toast = new bootstrap.Toast(get_toast);
+    show_toast.show();
+
     project_data.push(ppc);
     console.log(project_data);
 
@@ -57,18 +69,6 @@ function post_project(event) {
 
     close_modal();
 };
-
-const textarea = document.getElementById("description");
-textarea.addEventListener("input", function () {
-    const min_char = 80;
-    const input_length = this.value.length;
-
-    if (input_length < min_char) {
-        textarea.setCustomValidity("Minimum " + min_char + " characters required.")
-    } else {
-        textarea.setCustomValidity("");
-    }
-});
 
 function render_ppc() {
     document.getElementById("ppc-container").innerHTML = "";
@@ -103,7 +103,7 @@ function render_ppc() {
             <img src="${project_data[index].upload_image}" class="card-img-top rounded-top-4" alt="Mobile App" style="height: 10.25em; object-fit: cover;">
             <div class="card-body p-3">
               <a href="#" class="card-title ppc-title" style="text-decoration: none;">
-                <h6>${project_data[index].project_title}</h6>
+                <h6 class="text-truncate">${project_data[index].project_title}</h6>
               </a>
               <p class="text-muted" style="font-size: small; line-height: .5;">${result}</p>
               <p class="card-text lh-sm"
@@ -132,4 +132,8 @@ function close_modal() {
 
     const bootstrap_modal = bootstrap.Modal.getInstance(project_form_modal);
     bootstrap_modal.hide();
+
+    const get_toast = document.getElementById("toast-container");
+    const hide_toast = bootstrap.Toast.hide_toast(get_toast);
+    hide_toast.hide();
 };
