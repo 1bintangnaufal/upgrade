@@ -1,0 +1,20 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+$primary: #027a54;
+$secondary: #041b15;
+$danger: #6e0e0a;
+$btn-transition: color .3s ease-out, background-color .3s ease-out, border-color .3s ease-out, box-shadow .3s ease-out !default;
+
+// $body-bg-dark: #041b15;
+// $body-secondary-bg-dark: #231f20;
+// $body-tertiary-bg-dark: #062920;
+
+// $primary-bg-subtle-dark: #57f771;
+// $secondary-bg-subtle-dark: #e4edde;
+// $danger-bg-subtle-dark: #d74e09;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
