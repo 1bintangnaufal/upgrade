@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Home</title>
+
+  <link rel="icon" href="/Public/Assets/Images/favicon.ico" type="image/x-icon" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+    integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+    crossorigin="anonymous"></script>
+
+  <script src="https://kit.fontawesome.com/81634d0f93.js" crossorigin="anonymous"></script>
+
+  <style>
+    @import url('https://api.fontshare.com/v2/css?f[]=switzer@101,600,701,800,501,601,900,100,700,901,400,201,401,200,300,301,801,500&display=swap');
+
+    * {
+      font-family: 'Switzer', sans-serif;
+    }
+
+    #ppc-container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      margin: 3em auto 64px auto;
+      grid-gap: 3em;
+      justify-items: center;
+      max-width: fit-content;
+      height: auto;
+    }
+
+    @media only screen and (min-width: 768px) {
+      #ppc-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media only screen and (min-width: 992px) {
+      #ppc-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .ppc-title,
+    i:not(.hover-exception) {
+      transition: color .3s ease-out;
+    }
+
+    .ppc-title:hover,
+    .fa-bars-staggered:hover,
+    .fa-moon:hover {
+      color: #027A54;
+    }
+
+    .fa-linkedin-in:hover {
+      color: #0077B5;
+    }
+
+    .fa-instagram:hover {
+      color: #e4405f;
+    }
+
+    .fa-youtube:hover {
+      color: #ff0000;
+    }
+
+    .fa-twitter:hover {
+      color: #1d9bf0;
+    }
+
+    #inner-card,
+    #outer-card,
+    .ppc,
+    #nav-logo {
+      transition: transform .3s ease-out;
+    }
+
+    #inner-card:hover,
+    #outer-card:hover,
+    .ppc:hover,
+    #nav-logo:hover {
+      transform: scale(1.025);
+    }
+
+    #nav-icon {
+      transition: .3s ease-out;
+    }
+
+    #nav-icon-container {
+      border: none;
+    }
+
+    #nav-icon-container:active,
+    #nav-icon-container {
+      border: none;
+      box-shadow: none;
+    }
+
+    #delete-button {
+      height: auto !important;
+      margin-right: 0 !important;
+    }
+  </style>
+</head>
+
+<body class="bg-body-secondary">
+
+  <nav class="navbar rounded-bottom-5 shadow-sm navbar-expand-lg bg-body-tertiary sticky-top px-3 px-lg-5"
+    id="navbar-target">
+
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/Public/Assets/Images/personal-logo.svg" alt="Bintang Naufal Logo" width="36" height="36"
+          id="nav-logo" title="Bintang Naufal" />
+      </a>
+
+      <button class="navbar-toggler d-flex align-items-center px-0 py-2 d-lg-none" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation" id="nav-icon-container" onclick="rotate_the_bars()">
+        <i class="fa-solid fa-bars-staggered fa-fw fa-lg" id="nav-icon"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-column align-items-center flex-lg-row">
+
+          <li class="nav-item">
+            <a class="nav-link" href="#scroll-1">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#scroll-2">Projects</a>
+          </li>
+        </ul>
+
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn rounded-pill px-4 btn-outline-secondary mb-4 mb-lg-0" title="Send a Message"
+            data-bs-toggle="modal" data-bs-target="#send-message">
+            Contact <i class="fa-solid fa-envelope fa-fw ms-1 hover-exception"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="scrollspy" data-bs-spy="scroll" data-bs-target="#navbar-target" data-bs-smooth-scroll="true">
+
+    <!-- Main Card -->
+    <div class="container mt-5" style="margin-bottom: 16rem;">
+
+      <div class="card rounded-5 border-0 shadow-sm p-4 mx-auto d-flex flex-lg-row align-items-center gap-5"
+        id="outer-card" style="max-width: 90%;">
+        <div class="card-body">
+
+          <h3 class="card-title" id="scroll-1">Greetings. Feel Free To Explore Everything!</h3>
+          <p class="card-text lh-sm" style="text-align: justify;">My name is Phil. Fancy seeing you here! I hope you're
+            having a good morning or day or
+            evening. Fancy what you see here? Please do not hesitate to reach me out! The contact form button is right
+            down here and also on the navigation menu. Wink wink.
+          </p>
+          <div class="mt-5 d-flex gap-3 justify-content-center justify-content-lg-start flex-column flex-md-row">
+            <button data-bs-toggle="modal" data-bs-target="#send-message" class="btn rounded-pill px-4 btn-primary">Open
+              Form <i class="fa-solid fa-file-pen fa-fw hover-exception ms-1"></i></button>
+            <a href="https://bolderphil.crevado.com/" target="_blank"
+              class="btn rounded-pill px-4 btn-outline-secondary">
+              View Portfolio
+              <i class="fa-solid fa-expand fa-fw ms-1 hover-exception"></i>
+            </a>
+          </div>
+
+          <div class="d-flex gap-4 mt-5 justify-content-center justify-content-lg-start">
+            <a href="https://www.linkedin.com/in/bintangnaufal/" target="_blank"
+              style="text-decoration: none; color: unset;">
+              <i class="fa-brands fa-linkedin-in fa-xl" style="font-size: 36px;"></i>
+            </a>
+            <a href="https://www.instagram.com/bolderphil/" target="_blank"
+              style="text-decoration: none; color: unset;">
+              <i class="fa-brands fa-instagram fa-xl" style="font-size: 36px;"></i>
+            </a>
+            <a href="https://www.youtube.com/@bintangnaufal5420/featured" target="_blank"
+              style="text-decoration: none; color: unset;">
+              <i class="fa-brands fa-youtube fa-xl" style="font-size: 36px;"></i>
+            </a>
+            <a href="https://twitter.com/G_I_DLE" target="_blank" style="text-decoration: none; color: unset;">
+              <i class="fa-brands fa-twitter fa-xl" style="font-size: 36px;"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="card rounded-5 border-0 shadow-sm text-center" style="width: 800px; max-width: fit-content;"
+          id="inner-card">
+          <img src="/Public/Assets/Images/hoodie.jpg" class="card-img-top rounded-top-5 img-fluid"
+            alt="Cool Black Hoodie" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Bolderphil</h5>
+            <p class="card-text">Fullstack Developer</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Project Preview Cards -->
+    <div class="bg-body container-fluid p-5 rounded-top-5 shadow-sm">
+
+      <div id="scroll-2">
+
+        <div class="d-flex gap-3 justify-content-between align-items-center mx-3">
+          <h3 class="mb-0">Projects</h3>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn rounded-pill btn-outline-secondary btn-sm px-3" title="New Project"
+            data-bs-toggle="modal" data-bs-target="#add-new">
+            <i class="fa-solid fa-plus fa-sm me-1 hover-exception"></i>
+            Add
+          </button>
+
+        </div>
+
+        <div class="container" id="ppc-container">
+          {{range $index, $Project := .Projects}}
+          <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16em;">
+            <img src="/Public/Assets/Images/mobile-app.jpg" class="card-img-top rounded-top-4" alt="Mobile App"
+              style="height: 10.25em; object-fit: cover;">
+            <div class="card-body">
+              <a href="Project-Detail/{{$index}}" class="card-title ppc-title" style="text-decoration: none;">
+                <h6 class="text-truncate">{{$Project.Project_Title}}</h6>
+              </a>
+              <p class="text-muted" style="font-size: small; line-height: .5;">Duration: {{$Project.Duration}}</p>
+              <p class="card-text lh-sm"
+                style="font-size: small; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">
+                {{$Project.Description}}</p>
+              <div class="d-flex gap-2 my-4">
+                {{$Project.Icon_A}}
+                {{$Project.Icon_B}}
+                {{$Project.Icon_C}}
+                {{$Project.Icon_D}}
+              </div>
+              <div class="d-flex flex-row gap-2">
+                <button class="btn rounded-pill btn-outline-secondary btn-sm w-100">
+                  Edit
+                  <i class="fa-solid fa-pen-to-square fa-fw ms-1 hover-exception"></i>
+                </button>
+                <form class="container-fluid g-0" action="/Delete-Project/{{$index}}" method="POST">
+                  <button type="submit" class="btn rounded-pill btn-outline-danger btn-sm w-100"
+                    data-index="{{$index}}">
+                    Delete <i class="fa-solid fa-trash-can fa-fw ms-1 hover-exception"></i>
+                  </button>
+                </form>
+
+              </div>
+            </div>
+          </div>
+          {{end}}
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+
+  <!-- New Project Modal -->
+  <div class="modal fade" id="add-new" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-scrollable">
+
+      <div class="modal-content rounded-5">
+
+        <div class="modal-header bg-body-tertiary">
+          <h4 class="modal-title" id="staticBackdropLabel">New Project</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form action="/" method="post" onsubmit="Post_Project(event)">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-4" id="Project_Title" name="Project_Title"
+                placeholder="Project Title" required autocomplete="off">
+              <label for="Project_Title">Project Title <small class="text-muted">(*Max. 30 Characters)</small></label>
+            </div>
+
+            <div class="mb-3 d-lg-flex flex-row justify-content-between gap-2">
+              <div class="form-floating w-100 mb-3 mb-lg-0">
+                <input type="date" class="form-control rounded-4" id="Start_Date" name="Start_Date"
+                  placeholder="Start Date" required>
+                <label for="Start-Date">Start Date</label>
+              </div>
+              <div class="form-floating w-100">
+                <input type="date" class="form-control rounded-4" id="Finish_Date" name="Finish_Date"
+                  placeholder="Finish Date" required>
+                <label for="Finish_Date">Finish Date</label>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <textarea class="form-control rounded-4" id="Description" name="Description" placeholder="Description"
+                style="height: 160px; resize: none;" required autocomplete="off"></textarea>
+              <label for="Description">Description <small class="text-muted">(*Min. 80 Characters)</small></label>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label d-flex align-items-center gap-2">Technologies <small class="text-muted">(*Select
+                  at least one)</small></label>
+              <div class="row mx-auto">
+                <div class="form-check form-switch col">
+                  <input class="form-check-input" type="checkbox" role="switch" id="Toggle_A" name="Toggle_A"
+                    value="Toggle_A">
+                  <label class="form-check-label" for="Toggle_A">Javascript</label>
+                </div>
+                <div class="form-check form-switch col">
+                  <input class="form-check-input" type="checkbox" role="switch" id="Toggle_B" name="Toggle_B"
+                    value="Toggle_B">
+                  <label class="form-check-label" for="Toggle_B">Bootstrap</label>
+                </div>
+              </div>
+              <div class="row mx-auto">
+                <div class="form-check form-switch col">
+                  <input class="form-check-input" type="checkbox" role="switch" id="Toggle_C" name="Toggle_C"
+                    value="Toggle_C">
+                  <label class="form-check-label" for="Toggle_C">Go</label>
+                </div>
+                <div class="form-check form-switch col">
+                  <input class="form-check-input" type="checkbox" role="switch" id="Toggle_D" name="Toggle_D"
+                    value="Toggle_D">
+                  <label class="form-check-label" for="Toggle_D">React</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label" for="Upload_Image">Project Mockup</label>
+              <div class="input-group">
+                <input type="file" class="form-control rounded-start-pill" id="Upload_Image" name="Upload_Image"
+                  accept="image/png, image/jpeg, image/gif" required>
+                <label class="input-group-text rounded-end-pill" for="Upload_Image"><i
+                    class="fa-regular fa-folder-open fa-fw"></i></label>
+              </div>
+            </div>
+
+            <hr>
+
+            <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2" id="post-button">Post <i
+                class="fa-solid fa-arrow-up-right-from-square fa-fw ms-1 hover-exception"></i></button>
+            <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3" value="Clear Form"></input>
+
+          </form>
+        </div>
+
+        <div class="modal-footer text-body-secondary bg-body-tertiary d-flex justify-content-center">
+          *All fields are mandatory
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast align-items-center w-auto border-0 rounded-pill position-fixed bottom-0 end-0 m-3" role="alert"
+    aria-live="assertive" aria-atomic="true" id="toast-container">
+    <div class="d-flex">
+      <div class="toast-body px-3">
+        New project posted!
+      </div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+
+  <!-- Contact Modal -->
+  <div class="modal fade" id="send-message" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-scrollable">
+
+      <div class="modal-content rounded-5">
+
+        <div class="modal-header bg-body-tertiary">
+          <h4 class="modal-title" id="staticBackdropLabel">Send a Message</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-4" id="nickname" placeholder="Your Nickname"
+                autocomplete="off">
+              <label for="nickname">Your Nickname</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control rounded-4" id="email" placeholder="Email Address"
+                autocomplete="off">
+              <label for="email">Email Address</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control rounded-4" id="phone" placeholder="Phone Number"
+                autocomplete="off">
+              <label for="phone">Phone Number</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <select class="form-select rounded-4" id="select-subject">
+                <option value="Recruitment">Recruitment</option>
+                <option value="Suggestion">Suggestion</option>
+                <option value="Let's grab coffees!" selected>Let's Grab Coffees!</option>
+              </select>
+              <label for="select-subject">Select Subject</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <textarea class="form-control rounded-4" id="message" placeholder="Your Message"
+                style="height: 120px; resize: none;" autocomplete="off"></textarea>
+              <label for="message">Your Message</label>
+            </div>
+
+            <hr>
+
+            <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2" onclick="send_message()">Send <i
+                class="fa-solid fa-envelope-circle-check fa-fw ms-1 hover-exception"></i></button>
+            <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3" value="Clear Form"></input>
+
+          </form>
+        </div>
+
+        <div class="modal-footer text-body-secondary bg-body-tertiary d-flex justify-content-center">
+          *Your preferred email app will open after you click send
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <script src="/Public/Assets/JS/Project-Form.js"></script>
+  <script src="/Public/Assets/JS/Contact-Form.js"></script>
+  <script src="/Public/Assets/JS/Bars-Animation.js"></script>
+
+</body>
+
+</html>
