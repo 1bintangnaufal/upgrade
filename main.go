@@ -1,265 +1,141 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"strconv"
 	"text/template"
 	"time"
+	connection "upgrade/Connection"
 
+	"github.com/jackc/pgx/v5"
 	"github.com/labstack/echo/v4"
 )
 
 type Project struct {
-	Project_Title string
-	Start_Date    string
-	Finish_Date   string
-	Duration      string
-	Description   string
-	Toggle_A      bool
-	Toggle_B      bool
-	Toggle_C      bool
-	Toggle_D      bool
-	Icon_A        string
-	Icon_B        string
-	Icon_C        string
-	Icon_D        string
-	Label_A       string
-	Label_B       string
-	Label_C       string
-	Label_D       string
-}
+	ID int
 
-var Static_Project_Data = []Project{
-	{
-		Project_Title: "Mobile App - 2023",
-		Start_Date:    "2023-01-17",
-		Finish_Date:   "2023-05-17",
-		Duration:      "4 months",
-		Description:   "Quasi, iusto autem voluptas, facilis quidem aliquid sed harum provident iure nobis eaque sin accusantium excepturi consequatur, amet totam magni blanditiis. Voluptatibus natus placeat, maiores voluptates distinctio quia. Saepe porro maxime iste maiores voluptatem deserunt alias, debitis dolore odit eaque. Cupiditate architecto eaque vero debitis velit unde, cum haru consequatur iste. Neque molestias ducimus temporibus ex labore tempore magni, provident maiores? Obcaecati, placeat aliquid, officiis nulla voluptatem asperiores, ipsa unde a vel magni facere inventore necessitatibus.",
-		Icon_A:        `<i class="fa-brands fa-square-js fa-lg fa-fw"></i>`,
-		Icon_B:        `<i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>`,
-		Icon_C:        `<i class="fa-brands fa-golang fa-lg fa-fw"></i>`,
-		Icon_D:        `<i class="fa-brands fa-react fa-lg fa-fw"></i>`,
-		Label_A:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-square-js fa-lg fa-fw"></i>
-							<p class="m-0">Javascript</p>
-						</div>
-						`,
-		Label_B:       `<div class="d-flex flex-row align-items-center gap-1">
-            				<i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
-            				<p class="m-0">Bootstrap</p>
-        				</div>
-						`,
-		Label_C:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-golang fa-lg fa-fw"></i>
-							<p class="m-0">Go</p>
-						</div>
-						`,
-		Label_D:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-react fa-lg fa-fw"></i>
-							<p class="m-0">React</p>
-						</div>
-						`,
-	},
-	{
-		Project_Title: "Web App - 2022",
-		Start_Date:    "2022-04-11",
-		Finish_Date:   "2022-06-22",
-		Duration:      "2 months",
-		Description:   "Quasi, iusto autem voluptas, facilis quidem aliquid sed harum provident iure nobis eaque sin accusantium excepturi consequatur, amet totam magni blanditiis. Voluptatibus natus placeat, maiores voluptates distinctio quia. Saepe porro maxime iste maiores voluptatem deserunt alias, debitis dolore odit eaque. Cupiditate architecto eaque vero debitis velit unde, cum haru consequatur iste. Neque molestias ducimus temporibus ex labore tempore magni, provident maiores? Obcaecati, placeat aliquid, officiis nulla voluptatem asperiores, ipsa unde a vel magni facere inventore necessitatibus.",
-		Icon_A:        `<i class="fa-brands fa-square-js fa-lg fa-fw"></i>`,
-		Icon_B:        `<i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>`,
-		Icon_C:        `<i class="fa-brands fa-golang fa-lg fa-fw"></i>`,
-		Icon_D:        `<i class="fa-brands fa-react fa-lg fa-fw"></i>`,
-		Label_A:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-square-js fa-lg fa-fw"></i>
-							<p class="m-0">Javascript</p>
-						</div>
-						`,
-		Label_B:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
-							<p class="m-0">Bootstrap</p>
-						</div>
-						`,
-		Label_C:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-golang fa-lg fa-fw"></i>
-							<p class="m-0">Go</p>
-						</div>
-						`,
-		Label_D:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-react fa-lg fa-fw"></i>
-							<p class="m-0">React</p>
-						</div>
-						`,
-	},
-	{
-		Project_Title: "Desktop App - 2022",
-		Start_Date:    "2019-08-06",
-		Finish_Date:   "2022-09-08",
-		Duration:      "3 years",
-		Description:   "Quasi, iusto autem voluptas, facilis quidem aliquid sed harum provident iure nobis eaque sin accusantium excepturi consequatur, amet totam magni blanditiis. Voluptatibus natus placeat, maiores voluptates distinctio quia. Saepe porro maxime iste maiores voluptatem deserunt alias, debitis dolore odit eaque. Cupiditate architecto eaque vero debitis velit unde, cum haru consequatur iste. Neque molestias ducimus temporibus ex labore tempore magni, provident maiores? Obcaecati, placeat aliquid, officiis nulla voluptatem asperiores, ipsa unde a vel magni facere inventore necessitatibus.",
-		Icon_A:        `<i class="fa-brands fa-square-js fa-lg fa-fw"></i>`,
-		Icon_B:        `<i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>`,
-		Icon_C:        `<i class="fa-brands fa-golang fa-lg fa-fw"></i>`,
-		Icon_D:        `<i class="fa-brands fa-react fa-lg fa-fw"></i>`,
-		Label_A:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-square-js fa-lg fa-fw"></i>
-							<p class="m-0">Javascript</p>
-						</div>
-						`,
-		Label_B:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
-							<p class="m-0">Bootstrap</p>
-						</div>
-						`,
-		Label_C:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-golang fa-lg fa-fw"></i>
-							<p class="m-0">Go</p>
-						</div>
-						`,
-		Label_D:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-react fa-lg fa-fw"></i>
-							<p class="m-0">React</p>
-						</div>
-						`,
-	},
-	{
-		Project_Title: "Server Building - 2022",
-		Start_Date:    "2021-03-07",
-		Finish_Date:   "2022-05-24",
-		Duration:      "1 year",
-		Description:   "Quasi, iusto autem voluptas, facilis quidem aliquid sed harum provident iure nobis eaque sin accusantium excepturi consequatur, amet totam magni blanditiis. Voluptatibus natus placeat, maiores voluptates distinctio quia. Saepe porro maxime iste maiores voluptatem deserunt alias, debitis dolore odit eaque. Cupiditate architecto eaque vero debitis velit unde, cum haru consequatur iste. Neque molestias ducimus temporibus ex labore tempore magni, provident maiores? Obcaecati, placeat aliquid, officiis nulla voluptatem asperiores, ipsa unde a vel magni facere inventore necessitatibus.",
-		Icon_A:        `<i class="fa-brands fa-square-js fa-lg fa-fw"></i>`,
-		Icon_B:        `<i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>`,
-		Icon_C:        `<i class="fa-brands fa-golang fa-lg fa-fw"></i>`,
-		Icon_D:        `<i class="fa-brands fa-react fa-lg fa-fw"></i>`,
-		Label_A:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-square-js fa-lg fa-fw"></i>
-							<p class="m-0">Javascript</p>
-						</div>
-						`,
-		Label_B:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
-							<p class="m-0">Bootstrap</p>
-						</div>
-						`,
-		Label_C:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-golang fa-lg fa-fw"></i>
-							<p class="m-0">Go</p>
-						</div>
-						`,
-		Label_D:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-react fa-lg fa-fw"></i>
-							<p class="m-0">React</p>
-						</div>
-						`,
-	},
-	{
-		Project_Title: "Pecel Lele",
-		Start_Date:    "2023-06-07",
-		Finish_Date:   "2023-06-07",
-		Duration:      "Less than a day",
-		Description:   "Quasi, iusto autem voluptas, facilis quidem aliquid sed harum provident iure nobis eaque sin accusantium excepturi consequatur, amet totam magni blanditiis. Voluptatibus natus placeat, maiores voluptates distinctio quia. Saepe porro maxime iste maiores voluptatem deserunt alias, debitis dolore odit eaque. Cupiditate architecto eaque vero debitis velit unde, cum haru consequatur iste. Neque molestias ducimus temporibus ex labore tempore magni, provident maiores? Obcaecati, placeat aliquid, officiis nulla voluptatem asperiores, ipsa unde a vel magni facere inventore necessitatibus.",
-		Icon_A:        `<i class="fa-brands fa-square-js fa-lg fa-fw"></i>`,
-		Icon_B:        `<i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>`,
-		Icon_C:        `<i class="fa-brands fa-golang fa-lg fa-fw"></i>`,
-		Icon_D:        `<i class="fa-brands fa-react fa-lg fa-fw"></i>`,
-		Label_A:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-square-js fa-lg fa-fw"></i>
-							<p class="m-0">Javascript</p>
-						</div>
-						`,
-		Label_B:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
-							<p class="m-0">Bootstrap</p>
-						</div>
-						`,
-		Label_C:       `<div class="d-flex flex-row align-items-center gap-1">
-            				<i class="fa-brands fa-golang fa-lg fa-fw"></i>
-            				<p class="m-0">Go</p>
-        				</div>
-						`,
-		Label_D:       `<div class="d-flex flex-row align-items-center gap-1">
-							<i class="fa-brands fa-react fa-lg fa-fw"></i>
-							<p class="m-0">React</p>
-						</div>
-						`,
-	},
+	Project_Title string
+
+	Start_Date  time.Time
+	Finish_Date time.Time
+	Duration    time.Duration
+
+	Description string
+
+	Toggle_A bool
+	Toggle_B bool
+	Toggle_C bool
+	Toggle_D bool
+
+	Image string
+
+	Format_Start_Date  string
+	Format_Finish_Date string
+	Formatted_Duration string
 }
 
 func main() {
+	connection.Database_Connect()
+
 	e := echo.New()
+
 	e.Static("/Public", "Public")
+
 	e.GET("/", Main_Page)
-	e.GET("/Project-Detail/:id", Static_Project_Detail)
+	e.GET("/Project-Detail/:id", Project_Detail)
+	e.GET("/Edit-Project/:id", Edit_Project)
+
 	e.POST("/", Project_Form_Value)
 	e.POST("/Delete-Project/:id", Delete_Project)
+	e.POST("/Edit-Project/:id", Save_Changes)
+
 	e.Logger.Fatal(e.Start("localhost:5000"))
 }
 
 func Main_Page(c echo.Context) error {
+	data, _ := connection.Conn.Query(context.Background(), "SELECT id, project_title, start_date, finish_date, description, toggle_a, toggle_b, toggle_c, toggle_d, image FROM tb_project ORDER BY id")
+
+	var result []Project
+
+	for data.Next() {
+		var each = Project{}
+		err := data.Scan(&each.ID, &each.Project_Title, &each.Start_Date, &each.Finish_Date, &each.Description, &each.Toggle_A, &each.Toggle_B, &each.Toggle_C, &each.Toggle_D, &each.Image)
+
+		if err != nil {
+			fmt.Println(err.Error())
+			return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+		}
+
+		each.Duration = each.Finish_Date.Sub(each.Start_Date)
+		each.Formatted_Duration = Duration_Formatting(each.Duration)
+
+		result = append(result, each)
+	}
+
+	Projects := map[string]interface{}{
+		"Projects": result,
+	}
+
 	var tmpl, err = template.ParseFiles("Views/Index.html")
+
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 	}
-	Projects := map[string]interface{}{
-		"Projects": Static_Project_Data,
+
+	Map_Duration_Formatting := template.FuncMap{
+		"Duration_Formatting": Duration_Formatting,
 	}
+
+	tmpl = tmpl.Funcs(Map_Duration_Formatting)
+
 	return tmpl.Execute(c.Response(), Projects)
 }
 
-func Static_Project_Detail(c echo.Context) error {
+func Project_Detail(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
+
 	var Project_Detail = Project{}
-	for i, data := range Static_Project_Data {
-		if id == i {
-			Project_Detail = Project{
-				Project_Title: data.Project_Title,
-				Start_Date:    data.Start_Date,
-				Finish_Date:   data.Finish_Date,
-				Duration:      data.Duration,
-				Description:   data.Description,
-				Label_A:       data.Label_A,
-				Label_B:       data.Label_B,
-				Label_C:       data.Label_C,
-				Label_D:       data.Label_D,
-			}
-		}
-	}
-	data := map[string]interface{}{
-		"Project":        Project_Detail,
-		"Date_Formation": Date_Formation,
-	}
-	tmpl, err := template.New("Project-Detail.html").Funcs(template.FuncMap{"Date_Formation": Date_Formation}).ParseFiles("Views/Project-Detail.html")
+
+	err := connection.Conn.QueryRow(context.Background(), "SELECT id, project_title, start_date, finish_date, description, toggle_a, toggle_b, toggle_c, toggle_d, image FROM tb_project WHERE id=$1", id).Scan(&Project_Detail.ID, &Project_Detail.Project_Title, &Project_Detail.Start_Date, &Project_Detail.Finish_Date, &Project_Detail.Description, &Project_Detail.Toggle_A, &Project_Detail.Toggle_B, &Project_Detail.Toggle_C, &Project_Detail.Toggle_D, &Project_Detail.Image)
+
 	if err != nil {
-		fmt.Println("Template parsing error:", err)
+		if err == pgx.ErrNoRows {
+			return c.JSON(http.StatusNotFound, map[string]string{"message": "Project not found"})
+		}
 		return c.JSON(http.StatusInternalServerError, map[string]string{"mesage": err.Error()})
 	}
-	err = tmpl.Execute(c.Response(), data)
-	if err != nil {
-		fmt.Println("Template execution error:", err)
-		return c.JSON(http.StatusInternalServerError, map[string]string{"message": "Internal Server Error"})
-	}
-	return nil
-}
 
-func Date_Formation(date string) string {
-	t, err := time.Parse("2006-01-02", date)
-	if err != nil {
-		return "Invalid date format"
+	Project_Detail.Format_Start_Date = Project_Detail.Start_Date.Format("Jan 2, 2006")
+	Project_Detail.Format_Finish_Date = Project_Detail.Finish_Date.Format("Jan 2, 2006")
+
+	Project_Detail.Duration = Project_Detail.Finish_Date.Sub(Project_Detail.Start_Date)
+	Project_Detail.Formatted_Duration = Duration_Formatting(Project_Detail.Duration)
+
+	data := map[string]interface{}{
+		"Project_Detail": Project_Detail,
 	}
-	return t.Format("Jan 2, 2006")
+
+	tmpl, err_too := template.ParseFiles("Views/Project-Detail.html")
+
+	if err_too != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"mesage": err_too.Error()})
+	}
+
+	return tmpl.Execute(c.Response(), data)
 }
 
 func Duration_Formatting(Duration time.Duration) string {
 	if Duration <= 24*time.Hour {
 		return "Less than a day"
 	}
+
 	Days := int(Duration.Hours() / 24)
 	Weeks := Days / 7
 	Months := Days / 30
 	Years := Months / 12
+
 	if Years > 1 {
 		return fmt.Sprintf("%d years", Years)
 	} else if Years == 1 {
@@ -279,98 +155,89 @@ func Duration_Formatting(Duration time.Duration) string {
 	}
 }
 
-func Fa_I(Input_Value string) string {
-	if Input_Value == "Toggle_A" {
-		return `<i class="fa-brands fa-square-js fa-lg fa-fw"></i>`
-	} else if Input_Value == "Toggle_B" {
-		return `<i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>`
-	} else if Input_Value == "Toggle_C" {
-		return `<i class="fa-brands fa-golang fa-lg fa-fw"></i>`
-	} else if Input_Value == "Toggle_D" {
-		return `<i class="fa-brands fa-react fa-lg fa-fw"></i>`
-	} else {
-		return ""
-	}
-
-}
-
-func Fa_I_Labels(Input_Value string) string {
-	if Input_Value == "Toggle_A" {
-		return `
-		<div class="d-flex flex-row align-items-center gap-1">
-			<i class="fa-brands fa-square-js fa-lg fa-fw"></i>
-			<p class="m-0">Javascript</p>
-		</div>
-		`
-	} else if Input_Value == "Toggle_B" {
-		return `
-		<div class="d-flex flex-row align-items-center gap-1">
-            <i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
-            <p class="m-0">Bootstrap</p>
-        </div>
-		`
-	} else if Input_Value == "Toggle_C" {
-		return `
-		<div class="d-flex flex-row align-items-center gap-1">
-            <i class="fa-brands fa-golang fa-lg fa-fw"></i>
-            <p class="m-0">Go</p>
-        </div>
-		`
-	} else if Input_Value == "Toggle_D" {
-		return `
-		<div class="d-flex flex-row align-items-center gap-1">
-			<i class="fa-brands fa-react fa-lg fa-fw"></i>
-			<p class="m-0">React</p>
-		</div>
-		`
-	} else {
-		return ""
-	}
-}
-
 func Project_Form_Value(c echo.Context) error {
 	Project_Title := c.FormValue("Project_Title")
 	Start_Date := c.FormValue("Start_Date")
 	Finish_Date := c.FormValue("Finish_Date")
 	Description := c.FormValue("Description")
-	Toggle_A := c.FormValue("Toggle_A")
-	Toggle_B := c.FormValue("Toggle_B")
-	Toggle_C := c.FormValue("Toggle_C")
-	Toggle_D := c.FormValue("Toggle_D")
-	Icon_A := Fa_I(Toggle_A)
-	Icon_B := Fa_I(Toggle_B)
-	Icon_C := Fa_I(Toggle_C)
-	Icon_D := Fa_I(Toggle_D)
-	Label_A := Fa_I_Labels(Toggle_A)
-	Label_B := Fa_I_Labels(Toggle_B)
-	Label_C := Fa_I_Labels(Toggle_C)
-	Label_D := Fa_I_Labels(Toggle_D)
-	Start_Date_Format, _ := time.Parse("2006-01-02", Start_Date)
-	Finish_Date_Format, _ := time.Parse("2006-01-02", Finish_Date)
-	Duration := Finish_Date_Format.Sub(Start_Date_Format)
-	Duration_Format := Duration_Formatting(Duration)
-	var Render_New_Project = Project{
-		Project_Title: Project_Title,
-		Start_Date:    Start_Date,
-		Finish_Date:   Finish_Date,
-		Description:   Description,
-		Icon_A:        Icon_A,
-		Icon_B:        Icon_B,
-		Icon_C:        Icon_C,
-		Icon_D:        Icon_D,
-		Label_A:       Label_A,
-		Label_B:       Label_B,
-		Label_C:       Label_C,
-		Label_D:       Label_D,
-		Duration:      Duration_Format,
+
+	Toggle_A := c.FormValue("Toggle_A") == "on"
+	Toggle_B := c.FormValue("Toggle_B") == "on"
+	Toggle_C := c.FormValue("Toggle_C") == "on"
+	Toggle_D := c.FormValue("Toggle_D") == "on"
+
+	_, err := connection.Conn.Exec(context.Background(), "INSERT INTO tb_project (project_title, start_date, finish_date, description, toggle_a, toggle_b, toggle_c, toggle_d, image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)", Project_Title, Start_Date, Finish_Date, Description, Toggle_A, Toggle_B, Toggle_C, Toggle_D, "mobile-app.jpg")
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 	}
-	fmt.Println(Render_New_Project)
-	Static_Project_Data = append(Static_Project_Data, Render_New_Project)
+
+	fmt.Println(Project_Title, Start_Date, Finish_Date, Description, Toggle_A, Toggle_B, Toggle_C, Toggle_D)
+
 	return c.Redirect(http.StatusMovedPermanently, "/")
 }
 
 func Delete_Project(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
-	Static_Project_Data = append(Static_Project_Data[:id], Static_Project_Data[id+1:]... )
+
+	_, err := connection.Conn.Exec(context.Background(), "DELETE FROM tb_project WHERE id=$1", id)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+	}
+
 	return c.Redirect(http.StatusMovedPermanently, "/")
+}
+
+func Edit_Project(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	var Previous_Data = Project{}
+
+	err := connection.Conn.QueryRow(context.Background(), "SELECT id, project_title, start_date, finish_date, description, toggle_a, toggle_b, toggle_c, toggle_d, image FROM tb_project WHERE id=$1", id).Scan(&Previous_Data.ID, &Previous_Data.Project_Title, &Previous_Data.Start_Date, &Previous_Data.Finish_Date, &Previous_Data.Description, &Previous_Data.Toggle_A, &Previous_Data.Toggle_B, &Previous_Data.Toggle_C, &Previous_Data.Toggle_D, &Previous_Data.Image)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+	}
+
+	SD_F := Previous_Data.Start_Date.Format("2006-01-02")
+	FD_F := Previous_Data.Finish_Date.Format("2006-01-02")
+
+	data := map[string]interface{}{
+		"Previous_Data": Previous_Data,
+		"SD_F":          SD_F,
+		"FD_F":          FD_F,
+		"PDID":          Previous_Data.ID,
+	}
+
+	tmpl, err_too := template.ParseFiles("Views/Edit-Project-Form.html")
+
+	if err_too != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+	}
+
+	return tmpl.Execute(c.Response(), data)
+}
+
+func Save_Changes(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	Project_Title := c.FormValue("Project_Title")
+	Start_Date := c.FormValue("Start_Date")
+	Finish_Date := c.FormValue("Finish_Date")
+	Description := c.FormValue("Description")
+
+	Toggle_A := c.FormValue("Toggle_A") == "on"
+	Toggle_B := c.FormValue("Toggle_B") == "on"
+	Toggle_C := c.FormValue("Toggle_C") == "on"
+	Toggle_D := c.FormValue("Toggle_D") == "on"
+
+	_, err := connection.Conn.Exec(context.Background(), "UPDATE tb_project SET project_title=$1, start_date=$2, finish_date=$3, description=$4, toggle_a=$5, toggle_b=$6, toggle_c=$7, toggle_d=$8, image=$9 WHERE id=$10", Project_Title, Start_Date, Finish_Date, Description, Toggle_A, Toggle_B, Toggle_C, Toggle_D, "mobile-app.jpg", id)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+	}
+
+	redirectURL := fmt.Sprintf("/?id=%d#ppc-container", id)
+	return c.Redirect(http.StatusMovedPermanently, redirectURL)
 }

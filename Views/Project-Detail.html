@@ -99,7 +99,7 @@
     <nav class="navbar rounded-bottom-5 navbar-expand-lg bg-body-tertiary sticky-top px-3 px-lg-5" id="navbar-target">
 
         <div class="container-fluid">
-            <a class="navbar-brand" href="Index">
+            <a class="navbar-brand" href="/">
                 <img src="/Public/Assets/Images/personal-logo.svg" alt="Bintang Naufal Logo" width="36" height="36"
                     id="nav-logo" title="Bintang Naufal" />
             </a>
@@ -126,7 +126,7 @@
                 <div class="d-flex justify-content-center">
                     <button type="button" class="btn rounded-pill px-4 btn-outline-secondary mb-4 mb-lg-0"
                         title="Send a Message" data-bs-toggle="modal" data-bs-target="#send-message">
-                        Contact
+                        Contact <i class="fa-solid fa-envelope fa-fw ms-1 hover-exception"></i>
                     </button>
                 </div>
 
@@ -158,7 +158,7 @@
                 <div class="tab-pane fade show active" id="overview-content" role="tab-panel"
                     aria-labelledby="overview-tab" tabindex="0">
 
-                    <h5 class="card-title mb-4">{{.Project.Project_Title}}</h5>
+                    <h5 class="card-title mb-4">{{.Project_Detail.Project_Title}}</h5>
 
                     <div
                         class="d-flex flex-column flex-md-row justify-content-around align-items-center gap-4 gap-lg-0">
@@ -172,13 +172,12 @@
                                 <h6 class="badge bg-secondary rounded-pill p-2 fw-normal fs-6">Duration</h6>
                                 <div class="d-flex flex-row align-items-center gap-1 mb-2">
                                     <i class="fa-solid fa-calendar-days fa-lg fa-fw"></i>
-                                    <p class="m-0">{{Date_Formation .Project.Start_Date}} - {{Date_Formation
-                                        .Project.Finish_Date}}</p>
+                                    <p class="m-0">{{.Project_Detail.Format_Start_Date}} - {{.Project_Detail.Format_Finish_Date}}</p>
                                 </div>
 
                                 <div class="d-flex flex-row align-items-center gap-1">
                                     <i class="fa-solid fa-clock-rotate-left fa-lg fa-fw"></i>
-                                    <p class="m-0">{{.Project.Duration}}</p>
+                                    <p class="m-0">{{.Project_Detail.Formatted_Duration}}</p>
                                 </div>
                             </div>
 
@@ -186,15 +185,30 @@
                                 <h6 class="badge bg-primary rounded-pill p-2 fw-normal fs-6">Technologies</h6>
 
                                 <div id="tech-grid">
-
-                                    {{.Project.Label_A}}
-
-                                    {{.Project.Label_B}}
-
-                                    {{.Project.Label_C}}
-
-                                    {{.Project.Label_D}}
-
+                                    {{if .Project_Detail.Toggle_A}}
+                                        <div class="d-flex flex-row align-items-center gap-1">
+                                            <i class="fa-brands fa-square-js fa-lg fa-fw"></i>
+                                            <p class="m-0">Javascript</p>
+                                        </div>
+                                    {{end}}
+                                    {{if .Project_Detail.Toggle_B}}
+                                        <div class="d-flex flex-row align-items-center gap-1">
+                                            <i class="fa-brands fa-bootstrap fa-lg fa-fw"></i>
+                                            <p class="m-0">Bootstrap</p>
+                                        </div>
+                                    {{end}}
+                                    {{if .Project_Detail.Toggle_C}}
+                                        <div class="d-flex flex-row align-items-center gap-1">
+                                            <i class="fa-brands fa-golang fa-lg fa-fw"></i>
+                                            <p class="m-0">Go</p>
+                                        </div>
+                                    {{end}}
+                                    {{if .Project_Detail.Toggle_D}}
+                                        <div class="d-flex flex-row align-items-center gap-1">
+                                            <i class="fa-brands fa-react fa-lg fa-fw"></i>
+                                            <p class="m-0">React</p>
+                                        </div>
+                                    {{end}}
                                 </div>
 
                             </div>
@@ -206,9 +220,9 @@
                 <div class="tab-pane fade" id="details-content" role="tab-panel" aria-labelledby="details-tab"
                     tabindex="0">
 
-                    <h5 class="card-title mb-4">{{.Project.Project_Title}}</h5>
+                    <h5 class="card-title mb-4">{{.Project_Detail.Project_Title}}</h5>
 
-                    <p>{{.Project.Description}}</p>
+                    <p>{{.Project_Detail.Description}}</p>
                 </div>
 
             </div>
