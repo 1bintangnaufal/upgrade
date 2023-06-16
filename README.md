@@ -175,16 +175,13 @@ No longer necessary for the on going tasks, same link as before.
 
 ## Upcoming Features
 
-### Login and Register
-According to task 15 and 16..... To be revealed more in the next push.
-
-<hr>
-
-## ???
-
 ### Deletion Confirmation Modal
 
 I tried to implement this feature but it messed up my database. Until I figure things out, just be careful with the delete button.
+
+### Pagination
+
+When certain number of project cards are reached, they will go to the next page but stay on the same route. I really want to implement this feature but I still don't know how. Teach me? Hehe
 
 <hr>
 
