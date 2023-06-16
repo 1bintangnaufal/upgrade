@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Home</title>
+    <title>Edit Project</title>
 
     <link rel="icon" href="/Public/Assets/Images/favicon.ico" type="image/x-icon" />
 
@@ -87,11 +87,36 @@
                     </li>
                 </ul>
 
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn rounded-pill px-4 btn-outline-secondary mb-4 mb-lg-0"
-                        title="Send a Message" data-bs-toggle="modal" data-bs-target="#send-message">
+                <hr class="d-lg-none">
+
+                <div class="d-flex justify-content-center align-items-center gap-2 mb-4 mb-lg-0">
+
+                    {{if not .Data_Session.Login_State}}
+                    <div class="dropdown">
+                        <button class="btn btn-light px-4 rounded-pill dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Login
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu rounded-4">
+                            <li><a class="dropdown-item rounded-top-2" href="/Login">Login</a></li>
+                            <li><a class="dropdown-item rounded-bottom-2" href="/Register">Register</a></li>
+                        </ul>
+                    </div>
+
+                    <button type="button" class="btn rounded-pill px-4 btn-outline-secondary" title="Send a Message"
+                        data-bs-toggle="modal" data-bs-target="#send-message">
                         Contact <i class="fa-solid fa-envelope fa-fw ms-1 hover-exception"></i>
                     </button>
+                    {{end}}
+
+                    {{if .Data_Session.Login_State}}
+                    <p class="my-auto">Hi there, {{.Data_Session.First_Name}}!</p>
+                    <p class="my-auto fs-5">|</p>
+                    <form action="/Logout" method="POST" id="logout"></form>
+                    <button onclick="document.getElementById('logout').submit()"
+                        class="btn btn-outline-secondary px-4 rounded-pill">Logout <i
+                            class="fa-solid fa-right-to-bracket fa-fw ms-1 hover-exception"></i></button>
+                    {{end}}
                 </div>
 
             </div>
@@ -108,7 +133,8 @@
             </div>
 
             <div class="card-body">
-                <form action="/Edit-Project/{{.Previous_Data.ID}}" method="POST" id="edit-project-form">
+                <form action="/Edit-Project/{{.Previous_Data.ID}}" method="POST" id="edit-project-form"
+                    enctype="multipart/form-data">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control rounded-4" id="Project_Title" name="Project_Title"
                             placeholder="Project Title" required autocomplete="off"
@@ -181,8 +207,7 @@
                     <hr>
 
                     <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2" id="post-button">Save
-                        Changes <i
-                            class="fa-solid fa-floppy-disk fa-fw ms-1 hover-exception"></i></button>
+                        Changes <i class="fa-solid fa-floppy-disk fa-fw ms-1 hover-exception"></i></button>
                     <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3"
                         value="Clear Form"></input>
 

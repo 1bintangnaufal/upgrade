@@ -44,7 +44,7 @@ and of course, as the task provided, the 'Send' button will open your preferred 
 
 <hr>
 
-### Tabs for Project Detail.
+### Tabs for Project Detail
 
 Instead of showing the content simultaneously, I think tabs are going to be more fun! On 'Overview', we can see the image, dates, duration, icons, then when we click on 'Details', we can read through the description!
 
@@ -111,7 +111,7 @@ The condition is at least one toggle must be selected (Multiple toggles can be s
 
 5. Image Upload
 
-This is not utilized yet for now, it's just fake mandatory
+This is not utilized yet for now, it's just fake mandatory.
 
 <br>
 
@@ -143,20 +143,20 @@ Aside from the delete button actually working (be careful), the edit button will
 This project used to have a dark mode and it's toggle but I scrapped it temporarily because of Bootstrap complications. I'm gonna need time with that because I have to catch up with the mandatory task first. Here's the last updated project link that still has dark mode (Pure CSS) https://day-9-task.netlify.app/
 
 ### Background Pattern
-Same reason and link as before
+Same reason and link as before.
 
 ### My Own Custom Color Palette
-Same reason and link as before
+Same reason and link as before.
 
 ### Testimonials Page with HOF, OOP, AJAX (Javascript)
-No longer necessary for the on going tasks, same link as before
+No longer necessary for the on going tasks, same link as before.
 
 <hr>
 
 ## Upcoming Features
 
 ### Login and Register
-According to task 15 and 16..... To be revealed more in the next push
+According to task 15 and 16..... To be revealed more in the next push.
 
 <hr>
 
@@ -164,10 +164,12 @@ According to task 15 and 16..... To be revealed more in the next push
 
 ### Deletion Confirmation Modal
 
-I tried to implement this feature but it messed up my database. Until I figure things out, just be careful with the delete button
+I tried to implement this feature but it messed up my database. Until I figure things out, just be careful with the delete button.
 
 <hr>
 
 # Thank You For Visiting and Reading!
 
 Special thanks to https://github.com/adhxabre and my other mentors!
+
+GIF Artists: https://giphy.com/pislices https://dribbble.com/czidler

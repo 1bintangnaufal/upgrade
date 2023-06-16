@@ -141,16 +141,59 @@
           </li>
         </ul>
 
-        <div class="d-flex justify-content-center">
-          <button type="button" class="btn rounded-pill px-4 btn-outline-secondary mb-4 mb-lg-0" title="Send a Message"
+        <hr class="d-lg-none">
+
+        <div class="d-flex justify-content-center align-items-center gap-2 mb-4 mb-lg-0">
+
+          {{if not .Data_Session.Login_State}}
+          <div class="dropdown">
+            <button class="btn btn-light px-4 rounded-pill dropdown-toggle" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Login
+            </button>
+            <ul class="dropdown-menu dropdown-menu rounded-4">
+              <li><a class="dropdown-item rounded-top-2" href="/Login">Login</a></li>
+              <li><a class="dropdown-item rounded-bottom-2" href="/Register">Register</a></li>
+            </ul>
+          </div>
+
+          <button type="button" class="btn rounded-pill px-4 btn-outline-secondary" title="Send a Message"
             data-bs-toggle="modal" data-bs-target="#send-message">
             Contact <i class="fa-solid fa-envelope fa-fw ms-1 hover-exception"></i>
           </button>
+          {{else}}
+
+          <p class="my-auto">Hi there, {{.Data_Session.First_Name}}!</p>
+          <p class="my-auto fs-5">|</p>
+          <form action="/Logout" method="POST" id="logout"></form>
+          <button onclick="document.getElementById('logout').submit()"
+            class="btn btn-outline-secondary px-4 rounded-pill">Logout <i
+              class="fa-solid fa-right-to-bracket fa-fw ms-1 hover-exception"></i></button>
+          {{end}}
+
         </div>
 
       </div>
     </div>
   </nav>
+
+  {{if .Flash_Message}}
+  {{if .Flash_Status}}
+  <div class="container d-flex justify-content-center position-fixed" style="z-index: 10000;">
+    <div class="alert alert-success alert-dismissible fade show rounded-pill w-50 mt-3" role="alert">
+      <strong>{{.Flash_Message}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+  {{else}}
+  <div class="container d-flex justify-content-center position-fixed" style="z-index: 10000;">
+    <div class="alert alert-danger alert-dismissible fade show rounded-pill w-50 mt-3" role="alert">
+      <strong>{{.Flash_Message}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+  {{end}}
+  {{end}}
 
   <div class="scrollspy" data-bs-spy="scroll" data-bs-target="#navbar-target" data-bs-smooth-scroll="true">
 
@@ -199,7 +242,7 @@
 
         <div class="card rounded-5 border-0 shadow-sm text-center" style="width: 800px; max-width: fit-content;"
           id="inner-card">
-          <img src="/Public/Assets/Images/hoodie.jpg" class="card-img-top rounded-top-5 img-fluid"
+          <img src="/Public/Assets/Images/GIFs/giphy5.gif" class="card-img-top rounded-top-5 img-fluid"
             alt="Cool Black Hoodie" style="height: 300px; object-fit: cover;">
           <div class="card-body">
             <h5 class="card-title">Bolderphil</h5>
@@ -219,18 +262,20 @@
           <h3 class="mb-0">Projects</h3>
 
           <!-- Button trigger modal -->
+          {{if .Data_Session.Login_State}}
           <button type="button" class="btn rounded-pill btn-outline-secondary btn-sm px-3" title="New Project"
             data-bs-toggle="modal" data-bs-target="#add-new">
             <i class="fa-solid fa-plus fa-sm me-1 hover-exception"></i>
             Add
           </button>
+          {{end}}
 
         </div>
 
         <div class="container" id="ppc-container">
           {{range $index, $data := .Projects}}
           <div class="card rounded-4 border-0 shadow-sm ppc" style="width: 16em;">
-            <img src="/Public/Assets/Images/mobile-app.jpg" class="card-img-top rounded-top-4" alt="Mobile App"
+            <img src="/Uploads/{{$data.Image}}" class="card-img-top rounded-top-4" alt="Mobile App"
               style="height: 10.25em; object-fit: cover;">
             <div class="card-body">
               <a href="Project-Detail/{{$data.ID}}" class="card-title ppc-title" style="text-decoration: none;">
@@ -255,8 +300,9 @@
                 <i class="fa-brands fa-react fa-lg fa-fw"></i>
                 {{end}}
               </div>
-              <div class="d-flex flex-row gap-2">
 
+              {{if $.Data_Session.Login_State}}
+              <div class="d-flex flex-row gap-2">
                 <form class="container-fluid g-0" action="/Edit-Project/{{$data.ID}}" method="GET">
                   <button type="submit" class="btn rounded-pill btn-outline-secondary btn-sm w-100"
                     data-bs-toggle="modal" data-bs-target="#edit-project">
@@ -271,8 +317,9 @@
                     Delete <i class="fa-solid fa-trash-can fa-fw ms-1 hover-exception"></i>
                   </button>
                 </form>
-
               </div>
+              {{end}}
+              
             </div>
           </div>
           {{end}}
@@ -299,7 +346,7 @@
         </div>
 
         <div class="modal-body">
-          <form action="/" method="POST" onsubmit="Post_Project(event)">
+          <form action="/" method="POST" onsubmit="Post_Project(event)" enctype="multipart/form-data">
             <div class="form-floating mb-3">
               <input type="text" class="form-control rounded-4" id="Project_Title" name="Project_Title"
                 placeholder="Project Title" required autocomplete="off">

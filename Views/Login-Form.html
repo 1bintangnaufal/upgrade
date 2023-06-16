@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login</title>
+
+    <link rel="icon" href="/Public/Assets/Images/favicon.ico" type="image/x-icon" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/81634d0f93.js" crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://api.fontshare.com/v2/css?f[]=switzer@101,600,701,800,501,601,900,100,700,901,400,201,401,200,300,301,801,500&display=swap');
+
+        * {
+            font-family: 'Switzer', sans-serif;
+        }
+
+        #nav-logo {
+            transition: transform .3s ease-out;
+        }
+
+        #nav-logo:hover {
+            transform: scale(1.025);
+        }
+
+        #nav-icon {
+            transition: .3s ease-out;
+        }
+
+        #nav-icon-container {
+            border: none;
+        }
+
+        #nav-icon-container:active,
+        #nav-icon-container {
+            border: none;
+            box-shadow: none;
+        }
+
+        @media only screen and (min-width: 768px) {
+            #login-card {
+                max-width: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-body-secondary">
+
+    <nav class="navbar rounded-bottom-5 navbar-expand-lg bg-body-tertiary sticky-top px-3 px-lg-5" id="navbar-target">
+
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/Public/Assets/Images/personal-logo.svg" alt="Bintang Naufal Logo" width="36" height="36"
+                    id="nav-logo" title="Bintang Naufal" />
+            </a>
+
+            <button class="navbar-toggler d-flex align-items-center px-0 py-2 d-lg-none" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                id="nav-icon-container" onclick="rotate_the_bars()">
+                <i class="fa-solid fa-bars-staggered fa-fw fa-lg" id="nav-icon"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-column align-items-center flex-lg-row">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#scroll-2">Projects</a>
+                    </li>
+                </ul>
+
+                <hr class="d-lg-none">
+
+                <div class="d-flex justify-content-center align-items-center gap-2 mb-4 mb-lg-0">
+
+                    {{if not .Data_Session.Login_State}}
+                    <div class="dropdown">
+                        <button class="btn btn-light px-4 rounded-pill dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Login
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu rounded-4">
+                            <li><a class="dropdown-item rounded-top-2" href="/Login">Login</a></li>
+                            <li><a class="dropdown-item rounded-bottom-2" href="/Register">Register</a></li>
+                        </ul>
+                    </div>
+
+                    <button type="button" class="btn rounded-pill px-4 btn-outline-secondary" title="Send a Message"
+                        data-bs-toggle="modal" data-bs-target="#send-message">
+                        Contact <i class="fa-solid fa-envelope fa-fw ms-1 hover-exception"></i>
+                    </button>
+                    {{end}}
+
+                    {{if .Data_Session.Login_State}}
+                    <p class="my-auto">Hi there, {{.Data_Session.First_Name}}!</p>
+                    <p class="my-auto fs-5">|</p>
+                    <form action="/Logout" method="POST" id="logout"></form>
+                    <button onclick="document.getElementById('logout').submit()"
+                        class="btn btn-outline-secondary px-4 rounded-pill">Logout <i
+                            class="fa-solid fa-right-to-bracket fa-fw ms-1 hover-exception"></i></button>
+                    {{end}}
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    {{if .Flash_Message}}
+    {{if .Flash_Status}}
+    <div class="container-fluid d-flex justify-content-center position-fixed" style="z-index: 10000;">
+        <div class="alert alert-success alert-dismissible fade show rounded-pill mt-3" role="alert">
+            <strong>{{.Flash_Message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {{else}}
+    <div class="container-fluid d-flex justify-content-center position-fixed" style="z-index: 10000;">
+        <div class="alert alert-danger alert-dismissible fade show rounded-pill mt-3" role="alert">
+            <strong>{{.Flash_Message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {{end}}
+    {{end}}
+
+    <div class="container">
+
+        <div class="card rounded-5 w-md-50 mx-auto my-5" id="login-card">
+
+            <div class="card-header bg-body-tertiary rounded-top-5">
+                <h5 class="mb-1 mt-2 ms-2" id="staticBackdropLabel">Login</h5>
+            </div>
+
+            <div class="card-body">
+                <form action="/Login" method="POST">
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control rounded-4" id="Email" name="Email" placeholder="Email"
+                            required autocomplete="off">
+                        <label for="Email">Email</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control rounded-4" id="Password" name="Password"
+                            placeholder="Password" required autocomplete="off">
+                        <label for="Password">Password</label>
+                    </div>
+
+                    <hr>
+
+                    <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2"
+                        id="post-button">Login</button>
+
+                </form>
+            </div>
+
+            <div
+                class="card-footer text-body-secondary bg-body-tertiary d-flex justify-content-center rounded-bottom-5">
+                *All fields are mandatory
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="send-message" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-scrollable">
+
+            <div class="modal-content rounded-5">
+
+                <div class="modal-header bg-body-tertiary">
+                    <h4 class="modal-title" id="staticBackdropLabel">Send a Message</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-4" id="nickname" placeholder="Your Nickname"
+                                autocomplete="off">
+                            <label for="nickname">Your Nickname</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-4" id="email" placeholder="Email Address"
+                                autocomplete="off">
+                            <label for="email">Email Address</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control rounded-4" id="phone" placeholder="Phone Number"
+                                autocomplete="off">
+                            <label for="phone">Phone Number</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select rounded-4" id="select-subject">
+                                <option value="Recruitment">Recruitment</option>
+                                <option value="Suggestion">Suggestion</option>
+                                <option value="Let's grab coffees!" selected>Let's Grab Coffees!</option>
+                            </select>
+                            <label for="select-subject">Select Subject</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control rounded-4" id="message" placeholder="Your Message"
+                                style="height: 120px; resize: none;" autocomplete="off"></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+
+                        <hr>
+
+                        <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2"
+                            onclick="send_message()">Send <i
+                                class="fa-solid fa-envelope-circle-check fa-fw ms-1 hover-exception"></i></button>
+                        <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3"
+                            value="Clear Form"></input>
+
+                    </form>
+                </div>
+
+                <div class="modal-footer text-body-secondary bg-body-tertiary d-flex justify-content-center">
+                    *Your preferred email app will open after you click send
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="/Public/Assets/JS/Contact-Form.js"></script>
+    <script src="/Public/Assets/JS/Bars-Animation.js"></script>
+
+</body>
+
+</html>
