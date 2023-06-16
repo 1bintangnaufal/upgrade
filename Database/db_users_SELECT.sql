@@ -1,2 +1,2 @@
-SELECT id, name, email, password
-	FROM public.tb_users;
+SELECT id, first_name, last_name, email, password
+	FROM public.tb_user;

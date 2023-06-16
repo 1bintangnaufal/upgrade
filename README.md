@@ -1,4 +1,4 @@
-# Day 13 - Data Modelling + Day 14 - Finishing CRUD
+# Day 15 - Auth & Session + Day 16 - Table Relation & File Upload
 
 ## Project Mockups
 
@@ -9,7 +9,27 @@
 ![Mockup 3](/Public/Assets/Images/Mockups/Tablet.png)
 
 ## Explanation
-Why did I combine these 2 tasks? Because task 13 is an unfinished task 14. So why not just combine them together? And I am sorry for the late push 😊
+- Why did I combine these 2 tasks? Because task 13 is an unfinished task 14. So why not just combine them together? And I am sorry for the late push 😊
+- Same reason why I combined task 15 & 16
+
+<hr>
+
+## Changelog
+### Patch 0.14
+- Functioning register form,
+- Functioning login form,
+- Functioning image upload,
+- Greetings for logged in users,
+- Inaccessible 'Add', 'Edit', 'Delete' buttons if user is not logged in,
+- Project data shown according to which user/author owns them,
+- GIFs instead of JPGs because why not?
+
+### Bugs
+- Must restart Go to logout. Can anyone help? 🥲
+- If we try to logout without restarting Go, all unrelated project data and buttons will show instead of actually logging out. This did not happen when I was working on day 15 but when I was working on day 16 this occurs 😔🙏
+- I myself feel so annoyed by this but as soon as I know how to actually fix this, I'll immediately update.
+
+<br>
 
 <hr>
 
