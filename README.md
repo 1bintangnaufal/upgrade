@@ -17,7 +17,7 @@
 ## Changelog
 
 ### Patch 0.15
-- Fixed logout issue. everything works fine now!
+- Fixed logout issue. Everything works fine now!
 
 
 ### Patch 0.14
@@ -154,7 +154,7 @@ Aside from the delete button actually working (be careful), the edit button will
 
 <hr>
 
-## Deprecated Features (Perhaps will be back in upcoming features)
+## Deprecated Features (May or may not be back in upcoming features)
 
 ### Dark Mode
 This project used to have a dark mode and it's toggle but I scrapped it temporarily because of Bootstrap complications. I'm gonna need time with that because I have to catch up with the mandatory task first. Here's the last updated project link that still has dark mode (Pure CSS) https://day-9-task.netlify.app/
@@ -188,6 +188,6 @@ When you hit enter and make a new line, after submit and you view it, it's still
 
 # Thank You For Visiting and Reading!
 
-Special thanks to https://github.com/adhxabre and my other mentors!
+Special thanks to my mentors! https://github.com/adhxabre (Abel Dustin) https://github.com/torao-law (Dandi Saputra) and Cintara Surya 😊
 
 GIF Artists: https://giphy.com/pislices https://dribbble.com/czidler
