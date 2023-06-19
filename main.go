@@ -89,7 +89,6 @@ func main() {
 func Main_Page(c echo.Context) error {
 	sess, _ := session.Get("session", c)
 
-	// Check if any user is logged in
 	if sess.Values["Login_State"] == true {
 		User_Session.Login_State = sess.Values["Login_State"].(bool)
 		User_Session.First_Name = sess.Values["First_Name"].(string)
@@ -138,8 +137,11 @@ func Main_Page(c echo.Context) error {
 		tmpl = tmpl.Funcs(Map_Duration_Formatting)
 
 		return tmpl.Execute(c.Response(), Data)
+
 	} else {
-		// No user is logged in, fetch all projects
+		User_Session.Login_State = sess.Values["Login_State"] == false
+		User_Session.First_Name = ""
+
 		data, _ := connection.Conn.Query(context.Background(), "SELECT tb_project.id, project_title, start_date, finish_date, description, toggle_a, toggle_b, toggle_c, toggle_d, image, tb_user.first_name as author FROM tb_project JOIN tb_user ON tb_project.author_id = tb_user.id ORDER BY tb_project.id")
 
 		var result []Project
@@ -187,6 +189,16 @@ func Main_Page(c echo.Context) error {
 }
 
 func Project_Detail(c echo.Context) error {
+	sess, _ := session.Get("session", c)
+
+	if sess.Values["Login_State"] == true {
+		User_Session.Login_State = sess.Values["Login_State"].(bool)
+		User_Session.First_Name = sess.Values["First_Name"].(string)
+	} else {
+		User_Session.Login_State = sess.Values["Login_State"] == false
+		User_Session.First_Name = ""
+	}
+
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	var Project_Detail = Project{}
@@ -208,6 +220,7 @@ func Project_Detail(c echo.Context) error {
 
 	data := map[string]interface{}{
 		"Project_Detail": Project_Detail,
+		"Data_Session":  User_Session,
 	}
 
 	tmpl, err_too := template.ParseFiles("Views/Project-Detail.html")
@@ -273,7 +286,7 @@ func Project_Form_Value(c echo.Context) error {
 
 	fmt.Println(Project_Title, Start_Date, Finish_Date, Description, Toggle_A, Toggle_B, Toggle_C, Toggle_D)
 
-	return c.Redirect(http.StatusMovedPermanently, "/")
+	return c.Redirect(http.StatusFound, "/")
 }
 
 func Delete_Project(c echo.Context) error {
@@ -285,10 +298,20 @@ func Delete_Project(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 	}
 
-	return c.Redirect(http.StatusMovedPermanently, "/")
+	return c.Redirect(http.StatusFound, "/")
 }
 
 func Edit_Project(c echo.Context) error {
+	sess, _ := session.Get("session", c)
+
+	if sess.Values["Login_State"] == true {
+		User_Session.Login_State = sess.Values["Login_State"].(bool)
+		User_Session.First_Name = sess.Values["First_Name"].(string)
+	} else {
+		User_Session.Login_State = sess.Values["Login_State"] == false
+		User_Session.First_Name = ""
+	}
+	
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	var Previous_Data = Project{}
@@ -307,6 +330,7 @@ func Edit_Project(c echo.Context) error {
 		"SD_F":          SD_F,
 		"FD_F":          FD_F,
 		"PDID":          Previous_Data.ID,
+		"Data_Session":  User_Session,
 	}
 
 	tmpl, err_too := template.ParseFiles("Views/Edit-Project-Form.html")
@@ -343,7 +367,7 @@ func Save_Changes(c echo.Context) error {
 	}
 
 	redirectURL := fmt.Sprintf("/?id=%d#ppc-container", id)
-	return c.Redirect(http.StatusMovedPermanently, redirectURL)
+	return c.Redirect(http.StatusFound, redirectURL)
 }
 
 // GET
@@ -431,7 +455,7 @@ func Login(c echo.Context) error {
 	sess.Values["Login_State"] = true
 	sess.Save(c.Request(), c.Response())
 
-	return c.Redirect(http.StatusMovedPermanently, "/")
+	return c.Redirect(http.StatusFound, "/")
 }
 
 func Logout(c echo.Context) error {
@@ -439,7 +463,7 @@ func Logout(c echo.Context) error {
 	sess.Options.MaxAge = -1
 	sess.Save(c.Request(), c.Response())
 
-	return c.Redirect(http.StatusMovedPermanently, "/")
+	return c.Redirect(http.StatusFound, "/")
 }
 
 func redirectWithMessage(c echo.Context, Message string, Status bool, Path string) error {
@@ -448,5 +472,5 @@ func redirectWithMessage(c echo.Context, Message string, Status bool, Path strin
 	sess.Values["Status"] = Status
 	sess.Save(c.Request(), c.Response())
 
-	return c.Redirect(http.StatusMovedPermanently, Path)
+	return c.Redirect(http.StatusFound, Path)
 }

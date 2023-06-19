@@ -161,13 +161,13 @@
             data-bs-toggle="modal" data-bs-target="#send-message">
             Contact <i class="fa-solid fa-envelope fa-fw ms-1 hover-exception"></i>
           </button>
-          {{else}}
+          {{end}}
 
+          {{if .Data_Session.Login_State}}
           <p class="my-auto">Hi there, {{.Data_Session.First_Name}}!</p>
-          <p class="my-auto fs-5">|</p>
           <form action="/Logout" method="POST" id="logout"></form>
           <button onclick="document.getElementById('logout').submit()"
-            class="btn btn-outline-secondary px-4 rounded-pill">Logout <i
+            class="btn btn-outline-danger px-4 rounded-pill">Logout <i
               class="fa-solid fa-right-to-bracket fa-fw ms-1 hover-exception"></i></button>
           {{end}}
 
@@ -319,7 +319,7 @@
                 </form>
               </div>
               {{end}}
-              
+
             </div>
           </div>
           {{end}}

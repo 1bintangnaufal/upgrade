@@ -15,6 +15,11 @@
 <hr>
 
 ## Changelog
+
+### Patch 0.15
+- Fixed logout issue. everything works fine now!
+
+
 ### Patch 0.14
 - Functioning register form,
 - Functioning login form,
@@ -25,9 +30,7 @@
 - GIFs instead of JPGs because why not?
 
 ### Bugs
-- Must restart Go to logout. Can anyone help? 🥲
-- If we try to logout without restarting Go, all unrelated project data and buttons will show instead of actually logging out. This did not happen when I was working on day 15 but when I was working on day 16 this occurs 😔🙏
-- I myself feel so annoyed by this but as soon as I know how to actually fix this, I'll immediately update.
+- Fixed
 
 <br>
 
@@ -129,13 +132,7 @@ The condition is at least one toggle must be selected (Multiple toggles can be s
 
 <br>
 
-5. Image Upload
-
-This is not utilized yet for now, it's just fake mandatory.
-
-<br>
-
-6. Clear Form
+5. Clear Form
 
 The button below Post button, it will empty all inputted data. It is also implemented in the contact form.
 
@@ -157,7 +154,7 @@ Aside from the delete button actually working (be careful), the edit button will
 
 <hr>
 
-## Deprecated Features
+## Deprecated Features (Perhaps will be back in upcoming features)
 
 ### Dark Mode
 This project used to have a dark mode and it's toggle but I scrapped it temporarily because of Bootstrap complications. I'm gonna need time with that because I have to catch up with the mandatory task first. Here's the last updated project link that still has dark mode (Pure CSS) https://day-9-task.netlify.app/
@@ -175,13 +172,17 @@ No longer necessary for the on going tasks, same link as before.
 
 ## Upcoming Features
 
-### Deletion Confirmation Modal
+### Deletion Confirmation Modal and Logout Confirmation Modal
 
 I tried to implement this feature but it messed up my database. Until I figure things out, just be careful with the delete button.
 
 ### Pagination
 
-When certain number of project cards are reached, they will go to the next page but stay on the same route. I really want to implement this feature but I still don't know how. Teach me? Hehe
+When certain number of project cards are reached, they will go to the next page but stay on the same route. I really want to implement this feature but I'm still figuring how.
+
+### Auto Paragraph Indentation for Project Detail Description
+
+When you hit enter and make a new line, after submit and you view it, it's still not seperated paragraph. I'll look for the workaround about this.
 
 <hr>
 
