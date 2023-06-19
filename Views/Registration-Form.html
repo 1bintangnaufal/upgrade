@@ -106,12 +106,30 @@
                         data-bs-toggle="modal" data-bs-target="#send-message">
                         Contact <i class="fa-solid fa-envelope fa-fw ms-1 hover-exception"></i>
                     </button>
-                    
+
                 </div>
 
             </div>
         </div>
     </nav>
+
+    {{if .Flash_Message}}
+    {{if .Flash_Status}}
+    <div class="container-fluid d-flex justify-content-center position-fixed" style="z-index: 10000;">
+        <div class="alert alert-success alert-dismissible fade show rounded-pill mt-3" role="alert">
+            <strong>{{.Flash_Message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {{else}}
+    <div class="container-fluid d-flex justify-content-center position-fixed" style="z-index: 10000;">
+        <div class="alert alert-danger alert-dismissible fade show rounded-pill mt-3" role="alert">
+            <strong>{{.Flash_Message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {{end}}
+    {{end}}
 
     <div class="container">
 

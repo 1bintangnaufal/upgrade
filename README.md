@@ -9,8 +9,8 @@
 ![Mockup 3](/Public/Assets/Images/Mockups/Tablet.png)
 
 ## Explanation
-- Why did I combine these 2 tasks? Because task 13 is an unfinished task 14. So why not just combine them together? And I am sorry for the late push 😊
-- Same reason why I combined task 15 & 16
+- Why did I combine these 2 tasks? Because task 15 is an unfinished task 16. So why not just combine them together?
+- Same reason why I combined task 13 & 14.
 
 <hr>
 
@@ -25,12 +25,24 @@
 - Functioning login form,
 - Functioning image upload,
 - Greetings for logged in users,
-- Inaccessible 'Add', 'Edit', 'Delete' buttons if user is not logged in,
-- Project data shown according to which user/author owns them,
 - GIFs instead of JPGs because why not?
+
+<hr>
+
+- Registration: Existing users/authors can't register twice,
+- No one logs in and after logout: Inaccessible 'Add', 'Edit', 'Delete' buttons but all project data are shown,
+- Logged in: 'Add', 'Edit, and 'Delete' buttons are accessible but the project data shown are only according to which user/author owns them.
 
 ### Bugs
 - Fixed
+
+<br>
+
+### Update Mockup
+
+<br>
+
+![Mockup 16](/Public/Assets/Images/Mockups/new-features-014-015.png)
 
 <br>
 
@@ -154,7 +166,9 @@ Aside from the delete button actually working (be careful), the edit button will
 
 <hr>
 
-## Deprecated Features (May or may not be back in upcoming features)
+## Deprecated Features
+
+[Disclaimer]: They might or might NOT come back in future updates.
 
 ### Dark Mode
 This project used to have a dark mode and it's toggle but I scrapped it temporarily because of Bootstrap complications. I'm gonna need time with that because I have to catch up with the mandatory task first. Here's the last updated project link that still has dark mode (Pure CSS) https://day-9-task.netlify.app/
@@ -182,7 +196,11 @@ When certain number of project cards are reached, they will go to the next page 
 
 ### Auto Paragraph Indentation for Project Detail Description
 
-When you hit enter and make a new line, after submit and you view it, it's still not seperated paragraph. I'll look for the workaround about this.
+When you hit enter and make a new line in the project description input, after submitting then viewing it, they won't appear as seperated paragraphs. I'll look for the workaround about this.
+
+### Password Rules
+
+My mentor said it is something to do with JS so I'll figure it out soon.
 
 <hr>
 

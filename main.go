@@ -220,7 +220,7 @@ func Project_Detail(c echo.Context) error {
 
 	data := map[string]interface{}{
 		"Project_Detail": Project_Detail,
-		"Data_Session":  User_Session,
+		"Data_Session":   User_Session,
 	}
 
 	tmpl, err_too := template.ParseFiles("Views/Project-Detail.html")
@@ -311,7 +311,7 @@ func Edit_Project(c echo.Context) error {
 		User_Session.Login_State = sess.Values["Login_State"] == false
 		User_Session.First_Name = ""
 	}
-	
+
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	var Previous_Data = Project{}
@@ -372,13 +372,25 @@ func Save_Changes(c echo.Context) error {
 
 // GET
 func Registration(c echo.Context) error {
+	sess, _ := session.Get("session", c)
+
+	Flash := map[string]interface{}{
+		"Flash_Status":  sess.Values["Status"],
+		"Flash_Message": sess.Values["Message"],
+	}
+
+	delete(sess.Values, "Message")
+	delete(sess.Values, "Status")
+
+	sess.Save(c.Request(), c.Response())
+	
 	var tmpl, err = template.ParseFiles("Views/Registration-Form.html")
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 	}
 
-	return tmpl.Execute(c.Response(), nil)
+	return tmpl.Execute(c.Response(), Flash)
 }
 
 // POST
@@ -394,6 +406,12 @@ func Register(c echo.Context) error {
 	Password := c.FormValue("Password")
 
 	passwordHash, _ := bcrypt.GenerateFromPassword([]byte(Password), 10)
+
+	Existing_User := User{}
+	err = connection.Conn.QueryRow(context.Background(), "SELECT id, first_name, last_name, email, password FROM tb_user WHERE email=$1", Email).Scan(&Existing_User.ID, &Existing_User.First_Name, &Existing_User.Last_Name, &Existing_User.Email, &Existing_User.Password)
+	if err == nil {
+		return redirectWithMessage(c, "User with that email already exists. Please login or use another email", false, "/Register")
+	}
 
 	_, err = connection.Conn.Exec(context.Background(), "INSERT INTO tb_user(first_name, last_name, email, password) VALUES ($1, $2, $3, $4)", First_Name, Last_Name, Email, passwordHash)
 	if err != nil {
