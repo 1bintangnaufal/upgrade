@@ -195,11 +195,15 @@ No longer necessary for the on going tasks, same link as before.
 
 ### Load More
 
-When certain number of project cards are reached, they will hide the next contents and there will be a 'Load more' button to load the hidden contents. I really want to implement this feature but I'm still figuring how.
+I tried to implement this feature but it messed up my database. Until I figure things out, just be careful with the delete button.
+
+### Pagination
+
+When certain number of project cards are reached, they will go to the next page but stay on the same route. I really want to implement this feature but I'm still figuring how.
 
 ### Auto Paragraph Indentation for Project Detail Description
 
-When you hit enter and make a new line in the project description input, after submitting then viewing it, they won't appear as seperated paragraphs. I'll look for the workaround about this.
+When you hit enter and make a new line in the project description input, after submitting then viewing it, they still won't appear as seperated paragraphs. I'll look for the workaround about this.
 
 ### Password Rules
 
