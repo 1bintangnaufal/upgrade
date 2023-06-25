@@ -47,8 +47,6 @@
 
 ### Update Mockups
 
-<br>
-
 #### 0.15
 
 ![Mockup 16](/Public/Assets/Images/Mockups/new-features-014-015.png)
