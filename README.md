@@ -14,11 +14,18 @@
 
 <hr>
 
-## Changelog
+## Changelogs
+
+### Patch 0.16
+- Delete project confirmation drop-up,
+- Logout confirmation dropdown,
+- Fixed project detail card's tab height,
+- Info alert regarding scroll for more content in mobile size,
+- Projects section with the same width as the main card and sticky top header,
+- Other minor visual and functionality improvements (buttons styling, login message at nav, register hyperlink in login page and vice versa, etc)
 
 ### Patch 0.15
 - Fixed logout issue. Everything works fine now!
-
 
 ### Patch 0.14
 - Functioning register form,
@@ -34,17 +41,23 @@
 - Logged in: 'Add', 'Edit, and 'Delete' buttons are accessible but the project data shown are only according to which user/author owns them.
 
 ### Bugs
-- Fixed
+- Secured.
 
 <br>
 
-### Update Mockup
+### Update Mockups
 
 <br>
+
+#### 0.15
 
 ![Mockup 16](/Public/Assets/Images/Mockups/new-features-014-015.png)
 
 <br>
+
+#### 0.16
+
+![Mockup 17](/Public/Assets/Images/Mockups/new-features-02-016.png)
 
 <hr>
 
@@ -170,14 +183,8 @@ Aside from the delete button actually working (be careful), the edit button will
 
 [Disclaimer]: They might or might NOT come back in future updates.
 
-### Dark Mode
-This project used to have a dark mode and it's toggle but I scrapped it temporarily because of Bootstrap complications. I'm gonna need time with that because I have to catch up with the mandatory task first. Here's the last updated project link that still has dark mode (Pure CSS) https://day-9-task.netlify.app/
-
-### Background Pattern
-Same reason and link as before.
-
-### My Own Custom Color Palette
-Same reason and link as before.
+### Switchable Dark Mode, Background Pattern, Personalized Palettes
+This project used to have these features but I scrapped it temporarily because of Bootstrap complications. I'm gonna need time with that because I had to catch up with the mandatory task first. Here's the last updated project link that still has these features (Pure CSS) https://day-9-task.netlify.app/
 
 ### Testimonials Page with HOF, OOP, AJAX (Javascript)
 No longer necessary for the on going tasks, same link as before.
@@ -186,13 +193,9 @@ No longer necessary for the on going tasks, same link as before.
 
 ## Upcoming Features
 
-### Deletion Confirmation Modal and Logout Confirmation Modal
+### Load More
 
-I tried to implement this feature but it messed up my database. Until I figure things out, just be careful with the delete button.
-
-### Pagination
-
-When certain number of project cards are reached, they will go to the next page but stay on the same route. I really want to implement this feature but I'm still figuring how.
+When certain number of project cards are reached, they will hide the next contents and there will be a 'Load more' button to load the hidden contents. I really want to implement this feature but I'm still figuring how.
 
 ### Auto Paragraph Indentation for Project Detail Description
 

@@ -78,11 +78,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-column align-items-center flex-lg-row">
 
-                    <li class="nav-item">
+                    <li class="nav-item fw-bold">
                         <a class="nav-link" href="/">Home</a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item fw-bold">
                         <a class="nav-link" href="/#scroll-2">Projects</a>
                     </li>
                 </ul>
@@ -104,7 +104,7 @@
 
                     <button type="button" class="btn rounded-pill px-4 btn-outline-secondary" title="Send a Message"
                         data-bs-toggle="modal" data-bs-target="#send-message">
-                        Contact <i class="fa-solid fa-envelope fa-fw ms-1 hover-exception"></i>
+                        <i class="fa-solid fa-envelope fa-fw hover-exception"></i>
                     </button>
                 </div>
 
@@ -135,7 +135,7 @@
         <div class="card rounded-5 w-md-50 mx-auto my-5" id="login-card">
 
             <div class="card-header bg-body-tertiary rounded-top-5">
-                <h5 class="mb-1 mt-2 ms-2" id="staticBackdropLabel">Login</h5>
+                <h5 class="mb-1 mt-2 ms-2 fw-bold" id="staticBackdropLabel">Login</h5>
             </div>
 
             <div class="card-body">
@@ -153,20 +153,19 @@
                         <label for="Password">Password</label>
                     </div>
 
-                    <hr>
 
                     <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2"
                         id="post-button">Login</button>
 
+                    <hr>
+
+                    <p class="text-center">Not yet registered? <a href="/Register">Click here!</a></p>
+
                 </form>
             </div>
 
-            <div
-                class="card-footer text-body-secondary bg-body-tertiary d-flex justify-content-center rounded-bottom-5">
-                *All fields are mandatory
-            </div>
-
         </div>
+
     </div>
 
     <!-- Contact Modal -->
@@ -178,12 +177,13 @@
             <div class="modal-content rounded-5">
 
                 <div class="modal-header bg-body-tertiary">
-                    <h4 class="modal-title" id="staticBackdropLabel">Send a Message</h4>
+                    <h4 class="modal-title fw-bold" id="staticBackdropLabel">Send a Message</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
                     <form>
+
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control rounded-4" id="nickname" placeholder="Your Nickname"
                                 autocomplete="off">
@@ -217,19 +217,18 @@
                             <label for="message">Your Message</label>
                         </div>
 
-                        <hr>
-
-                        <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2"
-                            onclick="send_message()">Send <i
-                                class="fa-solid fa-envelope-circle-check fa-fw ms-1 hover-exception"></i></button>
-                        <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3"
-                            value="Clear Form"></input>
+                        <div class="d-flex mb-3 justify-content-between gap-2">
+                            <input type="reset" class="btn rounded-pill btn-secondary px-4" value="Clear"></input>
+                            <button type="submit" class="btn rounded-pill btn-primary w-100"
+                                onclick="send_message()"><i
+                                    class="fa-solid fa-envelope-circle-check fa-fw me-1 hover-exception"></i>Send</button>
+                        </div>
 
                     </form>
                 </div>
 
                 <div class="modal-footer text-body-secondary bg-body-tertiary d-flex justify-content-center">
-                    *Your preferred email app will open after you click send
+                    Professional email address is preferred
                 </div>
 
             </div>

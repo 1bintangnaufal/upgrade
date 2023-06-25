@@ -12,11 +12,11 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
-        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
         crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/81634d0f93.js" crossorigin="anonymous"></script>
@@ -43,20 +43,15 @@
         }
 
         #tab-height {
-            height: fit-content;
             z-index: 1;
-            transition: transform .3s ease-out;
         }
 
-        @media only screen and (min-width: 992px) {
-            #tab-height {
-                height: 26rem;
-            }
+        #tab-height::-webkit-scrollbar {
+            display: none;
         }
 
         #details-content p {
             text-align: justify;
-            text-indent: 2rem;
         }
 
         .fa-bars-staggered {
@@ -72,7 +67,6 @@
             transition: transform .3s ease-out;
         }
 
-        #tab-height:hover,
         .o-mockup:hover,
         #nav-logo:hover {
             transform: scale(1.025);
@@ -115,11 +109,11 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-column align-items-center flex-lg-row">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link fw-bold" href="/">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="/#scroll-2">Projects</a>
+                        <a class="nav-link active fw-bold" href="/#scroll-2">Projects</a>
                     </li>
                 </ul>
 
@@ -141,16 +135,38 @@
 
                     <button type="button" class="btn rounded-pill px-4 btn-outline-secondary" title="Send a Message"
                         data-bs-toggle="modal" data-bs-target="#send-message">
-                        Contact <i class="fa-solid fa-envelope fa-fw ms-1 hover-exception"></i>
+                        <i class="fa-solid fa-envelope fa-fw hover-exception"></i>
                     </button>
                     {{end}}
 
                     {{if .Data_Session.Login_State}}
-                    <p class="my-auto">Hi there, {{.Data_Session.First_Name}}!</p>
-                    <form action="/Logout" method="POST" id="logout"></form>
-                    <button onclick="document.getElementById('logout').submit()"
-                        class="btn btn-outline-danger px-4 rounded-pill">Logout <i
-                            class="fa-solid fa-right-to-bracket fa-fw ms-1 hover-exception"></i></button>
+                    <p class="my-auto">Logged in as <span class="fw-bold">{{.Data_Session.First_Name}}</span></p>
+                    <form action="/Logout" method="POST" id="logout">
+
+                        <div class="dropdown">
+                            <button class="btn btn-light text-danger px-4 rounded-pill" data-bs-toggle="dropdown"
+                                aria-expanded="false">Logout <i
+                                    class="fa-solid fa-right-to-bracket fa-fw ms-1 hover-exception"></i>
+                            </button>
+
+                            <ul class="dropdown-menu rounded-4 container-fluid">
+                                <li>
+                                    <p class="dropdown-item-text rounded-top-2 text-body-secondary lh-sm mt-2"
+                                        style="max-width: fit-content; font-size: small;">Confirm logout</p>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <button type="submit" class="dropdown-item text-danger">Logout</button>
+                                </li>
+                                <li>
+                                    <p class="dropdown-item" style="cursor: pointer;">Cancel</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </form>
                     {{end}}
                 </div>
 
@@ -160,18 +176,19 @@
 
     <div class="container my-5 d-flex justify-content-center">
 
-        <div class="card rounded-5 border-0 shadow-sm" id="tab-height" style="width: 45rem; overflow-y: auto;">
+        <div class="card rounded-5 border-0 shadow-sm" id="tab-height"
+            style="width: 45rem; height: 25rem; overflow-y: scroll;">
             <div class="card-header sticky-top bg-body-tertiary border-0">
                 <ul class="nav nav-tabs card-header-tabs" role="tablist">
                     <li class="nav-item">
-                        <button class="nav-link active rounded-top-4 border-0 text-body" id="overview-tab"
+                        <button class="nav-link active rounded-top-4 border-0 text-body fw-bold" id="overview-tab"
                             data-bs-toggle="tab" data-bs-target="#overview-content" type="button" role="tab"
                             aria-controls="overview-content" aria-selected="true">Overview</button>
                     </li>
 
                     <li class="nav-item">
-                        <button class="nav-link rounded-top-4 border-0 text-body" id="details-tab" data-bs-toggle="tab"
-                            data-bs-target="#details-content" type="button" role="tab"
+                        <button class="nav-link rounded-top-4 border-0 text-body fw-bold" id="details-tab"
+                            data-bs-toggle="tab" data-bs-target="#details-content" type="button" role="tab"
                             aria-controls="details-content">Details</button>
                     </li>
                 </ul>
@@ -182,7 +199,7 @@
                 <div class="tab-pane fade show active" id="overview-content" role="tab-panel"
                     aria-labelledby="overview-tab" tabindex="0">
 
-                    <h5 class="card-title mb-4">{{.Project_Detail.Project_Title}}</h5>
+                    <h5 class="card-title mb-4 fw-bold text-center">{{.Project_Detail.Project_Title}}</h5>
 
                     <div
                         class="d-flex flex-column flex-md-row justify-content-around align-items-center gap-4 gap-lg-0">
@@ -193,7 +210,7 @@
 
                         <div class="d-flex flex-column align-self-center align-self-md-start mt-3 mt-md-0">
                             <div class="d-flex flex-column mb-4">
-                                <h6 class="badge bg-secondary rounded-pill p-2 fw-normal fs-6">Duration</h6>
+                                <h6 class="badge bg-secondary rounded-pill p-2 fw-bold fs-6">Duration</h6>
                                 <div class="d-flex flex-row align-items-center gap-1 mb-2">
                                     <i class="fa-solid fa-calendar-days fa-lg fa-fw"></i>
                                     <p class="m-0">{{.Project_Detail.Format_Start_Date}} -
@@ -207,7 +224,7 @@
                             </div>
 
                             <div class="d-flex flex-column mb-4">
-                                <h6 class="badge bg-primary rounded-pill p-2 fw-normal fs-6">Technologies</h6>
+                                <h6 class="badge bg-secondary rounded-pill p-2 fw-bold fs-6">Technologies</h6>
 
                                 <div id="tech-grid">
                                     {{if .Project_Detail.Toggle_A}}
@@ -245,12 +262,19 @@
                 <div class="tab-pane fade" id="details-content" role="tab-panel" aria-labelledby="details-tab"
                     tabindex="0">
 
-                    <h5 class="card-title mb-4">{{.Project_Detail.Project_Title}}</h5>
+                    <h5 class="card-title mb-4 fw-bold text-center">{{.Project_Detail.Project_Title}}</h5>
 
                     <p>{{.Project_Detail.Description}}</p>
                 </div>
 
             </div>
+        </div>
+    </div>
+
+    <div class="container d-flex d-md-none d-lg-none justify-content-center position-fixed" style="z-index: 10000;">
+        <div class="alert alert-info alert-dismissible fade show rounded-pill" role="alert">
+            <strong style="font-size: small;">Scroll inside the card's tab for more contents</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
 
@@ -263,12 +287,13 @@
             <div class="modal-content rounded-5">
 
                 <div class="modal-header bg-body-tertiary">
-                    <h4 class="modal-title" id="staticBackdropLabel">Send a Message</h4>
+                    <h4 class="modal-title fw-bold" id="staticBackdropLabel">Send a Message</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
                     <form>
+
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control rounded-4" id="nickname" placeholder="Your Nickname"
                                 autocomplete="off">
@@ -302,18 +327,17 @@
                             <label for="message">Your Message</label>
                         </div>
 
-                        <hr>
-
-                        <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2"
-                            onclick="send_message()">Send</button>
-                        <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3"
-                            value="Clear Form"></input>
+                        <div class="d-flex mb-3 justify-content-between gap-2">
+                            <input type="reset" class="btn rounded-pill btn-secondary px-4" value="Clear"></input>
+                            <button type="submit" class="btn rounded-pill btn-primary w-100" onclick="send_message()"><i
+                                    class="fa-solid fa-envelope-circle-check fa-fw me-1 hover-exception"></i>Send</button>
+                        </div>
 
                     </form>
                 </div>
 
                 <div class="modal-footer text-body-secondary bg-body-tertiary d-flex justify-content-center">
-                    *Your preferred email app will open after you click send
+                    Professional email address is preferred
                 </div>
 
             </div>

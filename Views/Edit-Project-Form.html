@@ -79,11 +79,11 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-column align-items-center flex-lg-row">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link fw-bold" href="/">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="/#scroll-2">Projects</a>
+                        <a class="nav-link active fw-bold" href="/#scroll-2">Projects</a>
                     </li>
                 </ul>
 
@@ -91,31 +91,33 @@
 
                 <div class="d-flex justify-content-center align-items-center gap-2 mb-4 mb-lg-0">
 
-                    {{if not .Data_Session.Login_State}}
-                    <div class="dropdown">
-                        <button class="btn btn-light px-4 rounded-pill dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Login
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu rounded-4">
-                            <li><a class="dropdown-item rounded-top-2" href="/Login">Login</a></li>
-                            <li><a class="dropdown-item rounded-bottom-2" href="/Register">Register</a></li>
-                        </ul>
-                    </div>
+                    <p class="my-auto">Logged in as <span class="fw-bold">{{.Data_Session.First_Name}}</span></p>
+                    <form action="/Logout" method="POST" id="logout">
 
-                    <button type="button" class="btn rounded-pill px-4 btn-outline-secondary" title="Send a Message"
-                        data-bs-toggle="modal" data-bs-target="#send-message">
-                        Contact <i class="fa-solid fa-envelope fa-fw ms-1 hover-exception"></i>
-                    </button>
-                    {{end}}
+                        <div class="dropdown">
+                            <button class="btn btn-light text-danger px-4 rounded-pill" data-bs-toggle="dropdown"
+                                aria-expanded="false">Logout <i
+                                    class="fa-solid fa-right-to-bracket fa-fw ms-1 hover-exception"></i>
+                            </button>
 
-                    {{if .Data_Session.Login_State}}
-                    <p class="my-auto">Hi there, {{.Data_Session.First_Name}}!</p>
-                    <form action="/Logout" method="POST" id="logout"></form>
-                    <button onclick="document.getElementById('logout').submit()"
-                        class="btn btn-outline-danger px-4 rounded-pill">Logout <i
-                            class="fa-solid fa-right-to-bracket fa-fw ms-1 hover-exception"></i></button>
-                    {{end}}
+                            <ul class="dropdown-menu rounded-4 container-fluid">
+                                <li>
+                                    <p class="dropdown-item-text rounded-top-2 text-body-secondary lh-sm mt-2"
+                                        style="max-width: fit-content; font-size: small;">Confirm logout</p>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <button type="submit" class="dropdown-item text-danger">Logout</button>
+                                </li>
+                                <li>
+                                    <p class="dropdown-item" style="cursor: pointer;">Cancel</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </form>
                 </div>
 
             </div>
@@ -128,18 +130,21 @@
         <div class="card rounded-5 w-md-50 mx-auto my-5" id="edit-project-card">
 
             <div class="card-header bg-body-tertiary rounded-top-5">
-                <h5 class="mb-1 mt-2 ms-2" id="staticBackdropLabel">Edit Project</h5>
+                <h5 class="mb-1 mt-2 ms-2 fw-bold" id="staticBackdropLabel">Edit Project</h5>
             </div>
 
             <div class="card-body">
                 <form action="/Edit-Project/{{.Previous_Data.ID}}" method="POST" id="edit-project-form"
                     enctype="multipart/form-data">
+                    <p class="text-danger">
+                        *All fields are mandatory
+                    </p>
+
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control rounded-4" id="Project_Title" name="Project_Title"
                             placeholder="Project Title" required autocomplete="off"
                             value="{{.Previous_Data.Project_Title}}">
-                        <label for="Project_Title">Project Title <small class="text-muted">(*Max. 30
-                                Characters)</small></label>
+                        <label for="Project_Title">Project Title (*Max. 30 Characters)</label>
                     </div>
 
                     <div class="mb-3 d-lg-flex flex-row justify-content-between gap-2">
@@ -159,14 +164,12 @@
                         <textarea class="form-control rounded-4" id="Description" name="Description"
                             placeholder="Description" style="height: 160px; resize: none;" required
                             autocomplete="off">{{.Previous_Data.Description}}</textarea>
-                        <label for="Description">Description <small class="text-muted">(*Min. 80
-                                Characters)</small></label>
+                        <label for="Description">Description (*Min. 80
+                            Characters)</label>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label d-flex align-items-center gap-2">Technologies <small
-                                class="text-muted">(*Select
-                                at least one)</small></label>
+                        <label class="form-label d-flex align-items-center gap-2">Technologies</label>
                         <div class="row mx-auto">
                             <div class="form-check form-switch col">
                                 <input class="form-check-input" type="checkbox" role="switch" id="Toggle_A"
@@ -203,93 +206,27 @@
                         </div>
                     </div>
 
-                    <hr>
+                    <div class="d-flex mb-3 justify-content-between gap-2">
 
-                    <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2" id="post-button">Save
-                        Changes <i class="fa-solid fa-floppy-disk fa-fw ms-1 hover-exception"></i></button>
-                    <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3"
-                        value="Clear Form"></input>
+                        <input type="reset" class="btn rounded-pill btn-secondary px-4" value="Reset"></input>
+                        <button type="submit" class="btn rounded-pill btn-primary w-100" id="post-button"><i
+                                class="fa-solid fa-floppy-disk fa-fw me-1 hover-exception"></i>Save
+                            Changes</button>
+
+                    </div>
 
                 </form>
             </div>
 
             <div
                 class="card-footer text-body-secondary bg-body-tertiary d-flex justify-content-center rounded-bottom-5">
-                *All fields are mandatory
+                You can always edit this project again
             </div>
 
-        </div>
-    </div>
-
-    <!-- Contact Modal -->
-    <div class="modal fade" id="send-message" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-
-        <div class="modal-dialog modal-dialog-scrollable">
-
-            <div class="modal-content rounded-5">
-
-                <div class="modal-header bg-body-tertiary">
-                    <h4 class="modal-title" id="staticBackdropLabel">Send a Message</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <form>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-4" id="nickname" placeholder="Your Nickname"
-                                autocomplete="off">
-                            <label for="nickname">Your Nickname</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-4" id="email" placeholder="Email Address"
-                                autocomplete="off">
-                            <label for="email">Email Address</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input type="number" class="form-control rounded-4" id="phone" placeholder="Phone Number"
-                                autocomplete="off">
-                            <label for="phone">Phone Number</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <select class="form-select rounded-4" id="select-subject">
-                                <option value="Recruitment">Recruitment</option>
-                                <option value="Suggestion">Suggestion</option>
-                                <option value="Let's grab coffees!" selected>Let's Grab Coffees!</option>
-                            </select>
-                            <label for="select-subject">Select Subject</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <textarea class="form-control rounded-4" id="message" placeholder="Your Message"
-                                style="height: 120px; resize: none;" autocomplete="off"></textarea>
-                            <label for="message">Your Message</label>
-                        </div>
-
-                        <hr>
-
-                        <button type="submit" class="btn rounded-pill btn-primary w-100 mb-2"
-                            onclick="send_message()">Send <i
-                                class="fa-solid fa-envelope-circle-check fa-fw ms-1 hover-exception"></i></button>
-                        <input type="reset" class="btn rounded-pill btn-outline-danger w-100 mb-3"
-                            value="Clear Form"></input>
-
-                    </form>
-                </div>
-
-                <div class="modal-footer text-body-secondary bg-body-tertiary d-flex justify-content-center">
-                    *Your preferred email app will open after you click send
-                </div>
-
-            </div>
         </div>
     </div>
 
     <script src="/Public/Assets/JS/Edit-Project-Form.js"></script>
-    <script src="/Public/Assets/JS/Contact-Form.js"></script>
     <script src="/Public/Assets/JS/Bars-Animation.js"></script>
 
 </body>
